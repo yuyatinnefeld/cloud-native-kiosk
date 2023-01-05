@@ -25,7 +25,7 @@ I decided to continue the project for the following reasons:
 ## Local Debugging
 ```bash
 # flask app debug
-cd src/frontend
+cd deploy/frontend
 pip install -r requirements.txt
 export FLASK_APP=app.main.py
 flask run
@@ -42,6 +42,7 @@ kubectl port-forward service/$SERVICE_NAME $PORT
 
 # clean up
 kubectl delete -f deploy/frontend/app.yaml
+minikube delete --all
 ```
 
 ## Local Push Image
