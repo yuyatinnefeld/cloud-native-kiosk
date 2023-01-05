@@ -46,6 +46,4 @@ jobs:
         with:
           context: ./deploy/frontend/Dockerfile
           push: true
-          tags: 1.0.0
-          labels: ${{ steps.meta.outputs.labels }}
-        
+          tags: 1.0.0        
