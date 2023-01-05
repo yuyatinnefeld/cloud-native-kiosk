@@ -17,6 +17,10 @@ on:
       - main
       - 'develop'
 
+defaults:
+  run:
+    working-directory: ./deploy/frontend
+
 env:
   DOCKER_HUB_NAMESPACE: yuyatinnefeld
   IMAGE_NAME: cloud-native-kiosk-frontend
@@ -42,8 +46,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       
       - name: Build and push
-        run:
-          working-directory: ./deploy/frontend
         uses: docker/build-push-action@v2
         with:
           context: .
