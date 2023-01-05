@@ -13,11 +13,11 @@ on:
   release:
     types: [published]
   push:
-    branches: [main]
+    branches: [main, develop]
 
 env:
   DOCKER_HUB_NAMESPACE: yuyatinnefeld
-  IMAGE_NAME: cloud-native-kiosk-frontend:1.0.0
+  IMAGE_NAME: cloud-native-kiosk-frontend
 
 jobs:
   push_to_registry:
@@ -44,6 +44,6 @@ jobs:
         with:
           context: ./deploy/frontend/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: 1.0.0
           labels: ${{ steps.meta.outputs.labels }}
         
