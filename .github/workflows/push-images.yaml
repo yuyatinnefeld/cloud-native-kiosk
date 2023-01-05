@@ -13,7 +13,9 @@ on:
   release:
     types: [published]
   push:
-    branches: [main, develop]
+    branches: 
+      - main
+      - 'develop'
 
 env:
   DOCKER_HUB_NAMESPACE: yuyatinnefeld
