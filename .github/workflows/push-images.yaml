@@ -16,6 +16,7 @@ on:
     branches: 
       - main
       - 'develop'
+      - 'fix/*'
 env:
   DOCKER_HUB_NAMESPACE: yuyatinnefeld
   IMAGE_NAME: cloud-native-kiosk-frontend
