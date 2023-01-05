@@ -28,6 +28,9 @@ kubectl get service
 PORT=5000
 SERVICE_NAME="flask-service"
 kubectl port-forward service/$SERVICE_NAME $PORT
+
+# clean up
+kubectl delete -f deploy/frontend/app.yaml
 ```
 
 ## Push Image (TODO -> GitHub Actions)
