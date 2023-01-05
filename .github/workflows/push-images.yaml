@@ -16,7 +16,7 @@ on:
     branches: 
       - main
       - 'develop'
-
+      - 'feat/*'
 env:
   DOCKER_HUB_NAMESPACE: yuyatinnefeld
   IMAGE_NAME: cloud-native-kiosk-frontend
@@ -44,6 +44,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
-          context: Dockerfile.frontend
+          context: .
           push: true
           tags: 1.0.0
