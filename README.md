@@ -33,7 +33,7 @@ kubectl port-forward service/$SERVICE_NAME $PORT
 kubectl delete -f deploy/frontend/app.yaml
 ```
 
-## Push Image (TODO -> GitHub Actions)
+## Local Push Image
 ```bash
 export IMAGE_NAME_1=yuyatinnefeld/cloud-native-kiosk-frontend:1.0.0
 docker build -t $IMAGE_NAME_1 -f deploy/frontend/Dockerfile .
