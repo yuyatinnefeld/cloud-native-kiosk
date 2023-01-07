@@ -50,10 +50,12 @@ kubectl delete -f deploy/frontend/app.yaml
 minikube delete --all
 ```
 
-## Local Push Image
+## Local Pull Image
 ```bash
-export IMAGE_NAME_1=yuyatinnefeld/cloud-native-kiosk-frontend:1.0.0
-docker build -t $IMAGE_NAME_1 -f deploy/frontend/Dockerfile .
-docker push $IMAGE_NAME_1
+export FE_IMAGE_NAME_1=yuyatinnefeld/cloud-native-kiosk-frontend:1.0.0
+docker pull FE_IMAGE_NAME_1
+
+export BE_IMAGE_NAME_1=yuyatinnefeld/cloud-native-kiosk-backend:0.0.1
+docker pull BE_IMAGE_NAME_1
 ```
 
