@@ -7,7 +7,8 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-name: Publish Docker image
+name: Publish Backend Docker image
+run-name: Publish Backend Docker image 🚀
 
 on:
   release:
@@ -16,10 +17,10 @@ on:
     branches: 
       - main
       - 'develop'
-      - 'fix/*'
+      - 'feat/*'
 env:
   DOCKER_HUB_NAMESPACE: yuyatinnefeld
-  IMAGE_NAME: cloud-native-kiosk-frontend
+  IMAGE_NAME: cloud-native-kiosk-backend
 
 jobs:
   push_to_registry:
@@ -44,6 +45,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: deploy/frontend/
+          context: deploy/backend/
           push: true
-          tags: ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.IMAGE_NAME }}:1.0.0
+          tags: ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.IMAGE_NAME }}:0.0.1

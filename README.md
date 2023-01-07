@@ -24,11 +24,16 @@ I decided to continue the project for the following reasons:
 
 ## Local Debugging
 ```bash
-# flask app debug
+# frontend flask app debug
 cd deploy/frontend
 pip install -r requirements.txt
 export FLASK_APP=app.main.py
 flask run
+
+# backend fastapi app debug
+cd deploy/backend
+pip install -r requirements.txt
+uvicorn app.main:app --reload
 
 # deployment debug
 minikube start --cpus 2 --memory 8192
