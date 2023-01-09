@@ -47,4 +47,4 @@ jobs:
         with:
           context: deploy/backend/
           push: true
-          tags: ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.IMAGE_NAME }}:0.0.1
+          tags: ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.IMAGE_NAME }}:1.0.0
