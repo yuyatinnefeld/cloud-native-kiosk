@@ -1,4 +1,5 @@
 # ArgoCD
+![Screenshot](argocd_ui.png)
 
 ## Setup
 
@@ -16,6 +17,11 @@ kubectl port-forward service/$SERVICE_NAME -n $NAME_SPACE 8080:443
 ### get argocd password (username = admin)
 ```bash
 kubectl -n $NAME_SPACE get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+```
+
+### track your git repo
+```bash
+kubectl apply -f argocd.yaml
 ```
 
 ## Info
