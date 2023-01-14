@@ -11,7 +11,7 @@ spec:
     path: deploy # track all k8s-config of the path - <GIT-REPO-URL-PATH>
   destination: 
     server: https://kubernetes.default.svc # <INTERNAL-SERVICE-NAME-OF-K8S-API> kubectl get svc
-    namespace: cloud-native-kiosk-ns
+    namespace: cnk-ns
 
   syncPolicy:
     syncOptions:
