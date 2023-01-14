@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cloud-native-kiosk-deployment
+  name: cnk-deployment
   labels:
-    app: flaskapi
+    app: cnk
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: flaskapi
+      app: cnk
   template:
     metadata:
       labels:
-        app: flaskapi
+        app: cnk
     spec:
       containers:
-        - name: flaskapi
+        - name: cnk-frontend
           image: yuyatinnefeld/cloud-native-kiosk-frontend:1.0.0
           imagePullPolicy: IfNotPresent
           ports:
@@ -31,12 +31,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: flask-service
+  name: cnk-service
 spec:
   ports:
   - port: 5000
     protocol: TCP
     targetPort: 5000
   selector:
-    app: flaskapi
+    app: cnk
   type: LoadBalancer
