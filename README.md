@@ -22,7 +22,11 @@ I decided to continue the project for the following reasons:
 - Continuous Delivery Tool: ArgoCD
 - Hosting: Google Cloud -> Hybrid Cloud (GCP + RPi + AWS)
 
-## Local Debugging
+## Deploy GitOps Tool (ArgoCD)
+```
+./argocd/start_argocd.sh
+```
+## Local Debugging (Application)
 ```bash
 # frontend flask app debug
 cd deploy/frontend
@@ -34,16 +38,30 @@ flask run
 cd deploy/backend
 pip install -r requirements.txt
 uvicorn app.main:app --reload
+```
 
-# deployment debug
+## Local Debugging (Deployment)
+![Screenshot](/img/argocd_concept.png)
+
+```bash
+# deployment local k8s cluster
 minikube start --cpus 2 --memory 8192
-kubectl apply -f deploy/frontend/app.yaml
+
+# install argocd in your local k8s-cluster
+bash argocd/start_argocd.sh
+
+# open argocd ui
+bash argocd/open_argocd.sh
+
+# start to sync argocd+github > deploy application clusters
+kubectl apply -f ./argocd/argocd.yaml
 
 # test
-kubectl get service
+NAME_SPACE="cnk-ns"
 PORT=5000
-SERVICE_NAME="flask-service"
-kubectl port-forward service/$SERVICE_NAME $PORT
+SERVICE_NAME="cnk-service"
+kubectl get service -n $NAME_SPACE
+kubectl port-forward service/$SERVICE_NAME $PORT -n $NAME_SPACE
 
 # clean up
 kubectl delete -f deploy/frontend/app.yaml
@@ -57,5 +75,5 @@ docker pull FE_IMAGE_NAME_1
 
 export BE_IMAGE_NAME_1=yuyatinnefeld/cloud-native-kiosk-backend:1.0.0
 docker pull BE_IMAGE_NAME_1
-```
+``
 

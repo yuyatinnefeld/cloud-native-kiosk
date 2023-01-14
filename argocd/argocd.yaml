@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1  #API version will change, as new release of ArgoCD will be released
+kind: Application
+metadata:
+  name: argo-app-cloud-native-kiosk
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/yuyatinnefeld/cloud-native-kiosk # select <GIT-REPO-URL>
+    targetRevision: HEAD
+    path: deploy # track all k8s-config of the path - <GIT-REPO-URL-PATH>
+  destination: 
+    server: https://kubernetes.default.svc # <INTERNAL-SERVICE-NAME-OF-K8S-API> kubectl get svc
+    namespace: cnk-ns
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
