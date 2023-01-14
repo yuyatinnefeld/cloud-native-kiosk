@@ -1,6 +1,3 @@
-css/** linguist-vendored
-html/** linguist-vendored
-deploy/frontend/app/static/* linguist-vendored
-*.html linguist-detectable=false
-*.htm inguist-detectable=false
-*.css linguist-detectable=false
+*.html linguist-vendored
+*.htm linguist-vendored
+*.css linguist-vendored
