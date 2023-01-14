@@ -52,6 +52,7 @@ bash argocd/start_argocd.sh
 
 # open argocd ui
 bash argocd/open_argocd.sh
+open http://localhost:8080
 
 # start to sync argocd+github > deploy application clusters
 kubectl apply -f ./argocd/argocd.yaml
@@ -62,6 +63,8 @@ PORT=5000
 SERVICE_NAME="cnk-service"
 kubectl get service -n $NAME_SPACE
 kubectl port-forward service/$SERVICE_NAME $PORT -n $NAME_SPACE
+
+open http://localhost:5000
 
 # clean up
 kubectl delete -f deploy/frontend/app.yaml

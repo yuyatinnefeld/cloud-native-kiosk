@@ -9,6 +9,8 @@ bash start_argocd.sh
 
 # access ArgoCD UI
 bash open_argocd.sh
+
+open http://localhost:8080
 ```
 
 ### track your git repo
