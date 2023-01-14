@@ -78,5 +78,9 @@ docker pull FE_IMAGE_NAME_1
 
 export BE_IMAGE_NAME_1=yuyatinnefeld/cloud-native-kiosk-backend:1.0.0
 docker pull BE_IMAGE_NAME_1
-``
+```
 
+## Clean up
+```bash
+minikube delete --all
+```
