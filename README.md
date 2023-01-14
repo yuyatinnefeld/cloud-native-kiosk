@@ -22,6 +22,10 @@ I decided to continue the project for the following reasons:
 - Continuous Delivery Tool: ArgoCD
 - Hosting: Google Cloud -> Hybrid Cloud (GCP + RPi + AWS)
 
+## Deploy GitOps Tool (ArgoCD)
+```
+./argocd/start_argocd.sh
+```
 ## Local Debugging
 ```bash
 # frontend flask app debug
