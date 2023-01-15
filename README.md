@@ -65,7 +65,10 @@ kubectl get service -n $NAME_SPACE
 kubectl port-forward service/$SERVICE_NAME $PORT -n $NAME_SPACE
 
 open http://localhost:5000
+```
 
+## Monitoring
+```bash
 # install monitoring tool (prometheus + grafana)
 bash monitoring/prometheus.sh
 
