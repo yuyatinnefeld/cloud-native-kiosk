@@ -66,9 +66,14 @@ kubectl port-forward service/$SERVICE_NAME $PORT -n $NAME_SPACE
 
 open http://localhost:5000
 
-# clean up
-kubectl delete -f deploy/frontend/app.yaml
-minikube delete --all
+# install monitoring tool (prometheus + grafana)
+bash monitoring/prometheus.sh
+
+# start grafana
+bash monitoring/grafana.sh
+
+# open port
+open http://localhost:3000
 ```
 
 ## Local Pull Image
@@ -82,5 +87,6 @@ docker pull BE_IMAGE_NAME_1
 
 ## Clean up
 ```bash
+kubectl delete -f deploy/frontend/app.yaml
 minikube delete --all
 ```

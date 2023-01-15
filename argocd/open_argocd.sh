@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export NAME_SPACE="argocd"
 kubectl get service -n $NAME_SPACE
 
