@@ -1,4 +1,4 @@
-name: Python Package CI Test for Frontend Service
+name: 🧪 Python CI Test for Frontend Service 🧪
 
 on: [push, pull_request]
 
@@ -21,11 +21,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install pipenv 
         pipenv install --dev
-        pip install Flask==2.2.2
         cd ./deploy/frontend/app/
 
     - name: Run PyTest tests
       run: |
+        pipenv run pip install Flask==2.2.2 pytest==7.2.1
         pipenv run python -m pytest
 
     - name: Run Flake8 linting
