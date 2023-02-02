@@ -26,12 +26,12 @@ jobs:
     - name: Run PyTest tests
       run: |
         pipenv run pip install Flask==2.2.2 pytest==7.2.1
-        pipenv run python -m pytest ./tests
+        pipenv run python -m pytest tests/
 
     - name: Run Flake8 linting
       run: |
         pipenv run pip install flake8
-        pipenv run flake8 ./app
+        pipenv run flake8 app
 
     - name: Run security checks
       run: |
@@ -40,4 +40,4 @@ jobs:
 
     - name: Run dependency checks
       run: |
-        pipenv check ./app
+        pipenv check
