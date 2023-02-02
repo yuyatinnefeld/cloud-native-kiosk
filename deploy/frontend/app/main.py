@@ -73,5 +73,10 @@ def account():
   return render_template('account.html')
 
 
+@app.route("/unittests")
+def unittests():
+  return "This is for Unittests"
+
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
