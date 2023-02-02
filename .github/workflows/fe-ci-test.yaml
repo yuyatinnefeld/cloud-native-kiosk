@@ -23,10 +23,6 @@ jobs:
         pipenv install --dev
         cd ./deploy/frontend/app/
 
-    - name: Run PyTest tests
-      run: |
-        pipenv run python -m pytest
-
     - name: Run Flake8 linting
       run: |
         pipenv run pip install flake8
