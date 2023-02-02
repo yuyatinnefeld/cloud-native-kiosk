@@ -21,23 +21,23 @@ jobs:
         python -m pip install --upgrade pip
         pip install pipenv 
         pipenv install --dev
-        cd ./deploy/frontend/app/
+        cd ./deploy/frontend
 
     - name: Run PyTest tests
       run: |
         pipenv run pip install Flask==2.2.2 pytest==7.2.1
-        pipenv run python -m pytest
+        pipenv run python -m pytest ./tests
 
     - name: Run Flake8 linting
       run: |
         pipenv run pip install flake8
-        pipenv run flake8 .
+        pipenv run flake8 ./app
 
     - name: Run security checks
       run: |
         pipenv run pip install safety
-        pipenv run safety check
+        pipenv run safety check -r requirements.txt
 
     - name: Run dependency checks
       run: |
-        pipenv check
+        pipenv check ./app
