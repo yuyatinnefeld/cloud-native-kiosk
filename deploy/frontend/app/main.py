@@ -12,8 +12,9 @@ app.secret_key = 'key'
 login_manager.init_app(app)
 
 users = {
-    'user':{'pw':'pwd'},
+    'user': {'pw': 'pwd'},
 }
+
 
 class User(UserMixin):
     pass
@@ -40,14 +41,14 @@ def request_loader(request):
         user.is_authenticated = request.form['pw'] == users[username]['pw']
         return user
 
-    
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         username = request.form.get('username')
         if request.form.get('pw') == users[username]['pw']:
             user = User()
-        
+
         user.id = username
         flask_login.login_user(user)
         return redirect(url_for('protect'))
@@ -70,12 +71,12 @@ def protect():
 @app.route('/account')
 @flask_login.login_required
 def account():
-  return render_template('account.html')
+    return render_template('account.html')
 
 
 @app.route("/unittests")
 def unittests():
-  return "This is for Unittests"
+    return "This is for Unittests"
 
 
 if __name__ == "__main__":
