@@ -8,11 +8,7 @@ def test_app_exists():
 
 def test_app_route():
     app = main.app
-
-    @app.route("/unittests")
-    def unittests():
-        return "This is for Unittests"
-
+    
     client = app.test_client()
     response = client.get("/unittests")
     assert response.status_code == 200
