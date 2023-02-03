@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -26,17 +25,3 @@ spec:
               value: db_pwd
             - name: db_name
               value: frontend
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: cnk-service
-spec:
-  ports:
-  - port: 5000
-    protocol: TCP
-    targetPort: 5000
-  selector:
-    app: cnk
-  type: LoadBalancer

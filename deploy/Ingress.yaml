@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cnk-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /frontend
+        pathType: Prefix
+        backend:
+          service:
+            name: cnk-service
+            port:
+              name: http
+              number: 5000
