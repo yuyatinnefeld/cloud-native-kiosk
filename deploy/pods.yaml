@@ -21,7 +21,11 @@ spec:
           ports:
             - containerPort: 5000
           env:
-            - name: db_root_password
-              value: db_pwd
-            - name: db_name
-              value: frontend
+          - name: FLASK_APP
+            value: app.py
+          - name: FLASK_ENV
+            value: production
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
