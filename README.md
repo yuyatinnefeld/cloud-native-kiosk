@@ -50,6 +50,9 @@ minikube start --cpus 2 --memory 8192
 # install argocd in your local k8s-cluster
 bash argocd/start_argocd.sh
 
+# check if pods are available
+kubectl get pods --namespace argocd
+
 # open argocd ui
 bash argocd/open_argocd.sh
 open http://localhost:8080
@@ -81,6 +84,9 @@ open http://localhost:3000
 
 ## Clean up
 ```bash
-kubectl delete -f deploy/frontend/app.yaml
+kubectl delete -f deploy/ingress.yaml
+kubectl delete -f deploy/service.yaml
+kubectl delete -f deploy/pods.yaml
+
 minikube delete --all
 ```
