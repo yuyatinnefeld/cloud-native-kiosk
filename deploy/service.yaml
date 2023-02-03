@@ -5,7 +5,7 @@ metadata:
 spec:
   ports:
   - port: 5000
-    protocol: http
+    protocol: TCP
     targetPort: 5000
   selector:
     app: cnk
