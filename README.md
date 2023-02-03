@@ -22,10 +22,6 @@ I decided to continue the project for the following reasons:
 - Continuous Delivery Tool: ArgoCD
 - Hosting: Google Cloud -> Hybrid Cloud (GCP + RPi + AWS)
 
-## Deploy GitOps Tool (ArgoCD)
-```
-./argocd/start_argocd.sh
-```
 ## Local Debugging (Application)
 ```bash
 # frontend flask app debug
@@ -43,10 +39,14 @@ uvicorn app.main:app --reload
 ## Local Debugging (Deployment)
 ![Screenshot](/img/argocd_concept.png)
 
+## Run a cluster
 ```bash
 # deployment local k8s cluster
 minikube start --cpus 2 --memory 8192
+```
 
+## Deploy GitOps Tool (ArgoCD)
+```bash
 # install argocd in your local k8s-cluster
 bash argocd/start_argocd.sh
 
@@ -77,15 +77,6 @@ bash monitoring/grafana.sh
 
 # open port
 open http://localhost:3000
-```
-
-## Local Pull Image
-```bash
-export FE_IMAGE_NAME_1=yuyatinnefeld/cloud-native-kiosk-frontend:1.0.0
-docker pull FE_IMAGE_NAME_1
-
-export BE_IMAGE_NAME_1=yuyatinnefeld/cloud-native-kiosk-backend:1.0.0
-docker pull BE_IMAGE_NAME_1
 ```
 
 ## Clean up
