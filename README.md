@@ -1,7 +1,7 @@
 # Cloud Native Kiosk App on GCP / AWS
 
 ## About
- The cloud native kiosk is a monorepo project for selling kiosk items built by Flask + FastAPI framework. You may see a live demo of this project on GCP from the following link. https://xxxx.com. This App has login system functionality. The guest user is able to browse, search and add product to cart only. Checkout and payment option is available for registerd users. 
+ The cloud native kiosk is a monorepo project for selling kiosk items built by Flask + FastAPI framework. You may see a live demo of this project on GCP from the following link. http://xxx.com. This App has login system functionality. The guest user is able to browse, search and add product to cart only. Checkout and payment option is available for registerd users. 
 
 ## Motivation
 I decided to continue the project for the following reasons:
@@ -22,62 +22,58 @@ I decided to continue the project for the following reasons:
 - Continuous Delivery Tool: ArgoCD
 - Hosting: Google Cloud -> Hybrid Cloud (GCP + RPi + AWS)
 
-## Local Debugging (Application)
+## 1. Local Debugging (Application)
 ```bash
-# frontend flask app debug
-cd deploy/frontend
-pip install -r requirements.txt
-export FLASK_APP=app.main.py
-flask run
-
-# backend fastapi app debug
-cd deploy/backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+cat .vscode/launch.json
 ```
 
-## Local Debugging 
+## 2. Local Debugging (Cluster)
 
-### Run locally k8s cluster
+### Run a local cluster (minikube)
 ```bash
 # deployment local k8s cluster
 minikube start --cpus 2 --memory 8192
+minikube profile list
+minikube ip
 
 # activate minikube ingress controller for use ./deploy/ingress.yaml
 minikube addons enable ingress
 
-# verify
-kubectl get pods -n ingress-nginx
-
-# deploy components
-kubeclt apply -f deploy/pods.yaml
-kubeclt apply -f deploy/service.yaml
-kubeclt apply -f deploy/ingress.yaml
-
-# verify ip of k8s-cluster is created
-kubectl get ingress
+# verify the ingress controller
+kubectl get pods -n ingress-nginx | grep ingress-nginx-controller
 ```
-### Map the IP and domain for the accessing domain locally
+
+### Map the local cluster IP and domain for the accessing domain locally
 ```bash
 vi /etc/hosts
 ```
 
 ```bash
-# Added by Docker Desktop
-# To allow the same kube context to work on the host and the container:
+# Host Database
 ...
 192.168.64.40 cnk.com
+...
+# End of section
 ```
 
+### 2.1. Local Debugging Manually
 ```bash
-open cnk.com
+# deploy components
+kubectl apply -f deploy/pods.yaml
+kubectl apply -f deploy/service.yaml
+kubectl apply -f deploy/ingress.yaml
+
+# verify if the ingress recieved the cluster ip
+kubectl get ingress --watch
+
+# open the url
+open http://cnk.com
 ```
 
-
-## Local Debugging (Deployment)
+### 2.2. Local Debugging with ArgoCD
 ![Screenshot](/img/argocd_concept.png)
 
-## Deploy GitOps Tool (ArgoCD)
+
 ```bash
 # install argocd in your local k8s-cluster
 bash argocd/start_argocd.sh
@@ -92,7 +88,10 @@ open http://localhost:8080
 # start to sync argocd+github > deploy application clusters
 kubectl apply -f ./argocd/argocd.yaml
 
-# test
+# test with test-local-domain
+open http://cnk.com
+
+# test with forward service
 NAME_SPACE="cnk-ns"
 PORT=5000
 SERVICE_NAME="cnk-service"
