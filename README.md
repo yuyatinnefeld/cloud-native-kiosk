@@ -42,7 +42,37 @@ uvicorn app.main:app --reload
 ```bash
 # deployment local k8s cluster
 minikube start --cpus 2 --memory 8192
+
+# activate minikube ingress controller for use ./deploy/ingress.yaml
+minikube addons enable ingress
+
+# verify
+kubectl get pods -n ingress-nginx
+
+# deploy components
+kubeclt apply -f deploy/pods.yaml
+kubeclt apply -f deploy/service.yaml
+kubeclt apply -f deploy/ingress.yaml
+
+# verify ip of k8s-cluster is created
+kubectl get ingress
 ```
+### Map the IP and domain for the accessing domain locally
+```bash
+vi /etc/hosts
+```
+
+```bash
+# Added by Docker Desktop
+# To allow the same kube context to work on the host and the container:
+...
+192.168.64.40 cnk.com
+```
+
+```bash
+open cnk.com
+```
+
 
 ## Local Debugging (Deployment)
 ![Screenshot](/img/argocd_concept.png)
