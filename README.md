@@ -36,14 +36,16 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-## Local Debugging (Deployment)
-![Screenshot](/img/argocd_concept.png)
+## Local Debugging 
 
-## Run a cluster
+### Run locally k8s cluster
 ```bash
 # deployment local k8s cluster
 minikube start --cpus 2 --memory 8192
 ```
+
+## Local Debugging (Deployment)
+![Screenshot](/img/argocd_concept.png)
 
 ## Deploy GitOps Tool (ArgoCD)
 ```bash
