@@ -79,5 +79,10 @@ def unittests():
     return "This is for Unittests"
 
 
+@app.route("/health")
+def cluster_health_check():
+    return "This is Health check for k8s cluster"
+
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
