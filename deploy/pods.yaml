@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cnk-deployment
-  labels:
-    app: cnk
 spec:
   replicas: 2
   selector:
@@ -15,17 +13,16 @@ spec:
         app: cnk
     spec:
       containers:
-        - name: cnk-frontend
-          image: yuyatinnefeld/cloud-native-kiosk-frontend:1.0.0
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 5000
-          env:
-          - name: FLASK_APP
-            value: app.py
-          - name: FLASK_ENV
-            value: production
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 5000
+      - name: cnk-frontend-app
+        image: yuyatinnefeld/cloud-native-kiosk-frontend:1.0.0
+        ports:
+        - containerPort: 5000
+        env:
+        - name: FLASK_APP
+          value: app/main.py
+        - name: FLASK_ENV
+          value: production
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000

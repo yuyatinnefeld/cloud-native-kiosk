@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: cnk-service
 spec:
-  ports:
-  - port: 5000
-    protocol: TCP
-    targetPort: 5000
   selector:
     app: cnk
+  ports:
+  - name: http
+    port: 5000
+    targetPort: 5000
   type: LoadBalancer
