@@ -9,7 +9,7 @@ spec:
     repoURL: https://github.com/yuyatinnefeld/cloud-native-kiosk # select <GIT-REPO-URL>
     targetRevision: HEAD
     path: deploy # track all k8s-config of the path - <GIT-REPO-URL-PATH>
-  destination: 
+  destination:
     server: https://kubernetes.default.svc # <INTERNAL-SERVICE-NAME-OF-K8S-API> kubectl get svc
     namespace: cnk-ns
 

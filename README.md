@@ -1,7 +1,7 @@
 # Cloud Native Kiosk App on GCP / AWS
 
 ## About
- The cloud native kiosk is a monorepo project for selling kiosk items built by Flask + FastAPI framework. You may see a live demo of this project on GCP from the following link. http://xxx.com. This App has login system functionality. The guest user is able to browse, search and add product to cart only. Checkout and payment option is available for registerd users. 
+ The cloud native kiosk is a monorepo project for selling kiosk items built by Flask + FastAPI framework. You may see a live demo of this project on GCP from the following link. http://xxx.com. This App has login system functionality. The guest user is able to browse, search and add product to cart only. Checkout and payment option is available for registerd users.
 
 ## Motivation
 I decided to continue the project for the following reasons:
