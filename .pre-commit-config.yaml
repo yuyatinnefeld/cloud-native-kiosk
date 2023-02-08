@@ -3,6 +3,10 @@ repos:
     rev: v2.3.0
     hooks:
     -   id: check-yaml
+    -   id: check-docstring-first
+    -   id: detect-private-key
+    -   id: name-tests-test
+    -   id: requirements-txt-fixer
     -   id: end-of-file-fixer
     -   id: trailing-whitespace
 -   repo: https://github.com/psf/black
