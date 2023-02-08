@@ -3,9 +3,22 @@ repos:
     rev: v2.3.0
     hooks:
     -   id: check-yaml
+    -   id: check-docstring-first
+    -   id: detect-private-key
+    -   id: requirements-txt-fixer
     -   id: end-of-file-fixer
     -   id: trailing-whitespace
 -   repo: https://github.com/psf/black
     rev: 22.10.0
     hooks:
     -   id: black
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: ''  # Use the sha / tag you want to point at
+    hooks:
+    -   id: mypy
+        exclude: ^deploy/backend/app/routes/
+- repo: https://github.com/pre-commit/mirrors-pylint
+  rev: v3.0.0a3
+  hooks:
+    - id: pylint
+      args: [--disable=all, --enable=unused-import]
