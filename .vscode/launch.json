@@ -18,6 +18,17 @@
             "debugOptions": [
                 "RedirectOutput"
             ]
+        },
+        {
+            "name": "CNK Backend",
+            "type": "python",
+            "request": "launch",
+            "module": "uvicorn",
+            "cwd": "${workspaceFolder}/deploy/backend",
+            "args": [
+                "app.main:app"
+            ],
+            "jinja": true
         }
     ]
 }
