@@ -29,6 +29,11 @@ def read_root():
     return {"hello": "world"}
 
 
+@app.get("/health")
+def health_check():
+    return "Health check👌"
+
+
 app.include_router(info_routes.router)
 
 # sqlite db with k8s not working
