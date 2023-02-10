@@ -26,3 +26,17 @@ spec:
           httpGet:
             path: /health
             port: 5000
+      - name: cnk-backend-app
+        image: yuyatinnefeld/cloud-native-kiosk-backend:1.0.0
+        ports:
+        - containerPort: 80
+        env:
+        - name: PORT
+          value: "80"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      restartPolicy: Always
