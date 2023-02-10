@@ -1,13 +1,7 @@
 name: 🚀 Publish Frontend Docker image
 run-name: Publish Frontend Docker image
+on: [workflow_dispatch]
 
-on:
-  release:
-    types: [published]
-  push:
-    branches:
-      - main
-      - 'develop'
 env:
   DOCKER_HUB_NAMESPACE: yuyatinnefeld
   IMAGE_NAME: cloud-native-kiosk-frontend
