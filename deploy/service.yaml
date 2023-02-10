@@ -9,4 +9,7 @@ spec:
   - name: http
     port: 5000
     targetPort: 5000
+  - name: http
+    port: 8000
+    targetPort: 80
   type: LoadBalancer
