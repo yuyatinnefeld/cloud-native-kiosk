@@ -1,13 +1,7 @@
 name: 🚀 Publish Backend Docker image 🚀
 run-name: Publish Backend Docker image
+on: [workflow_dispatch]
 
-on:
-  release:
-    types: [published]
-  push:
-    branches:
-      - main
-      - 'develop'
 env:
   DOCKER_HUB_NAMESPACE: yuyatinnefeld
   IMAGE_NAME: cloud-native-kiosk-backend
