@@ -1,9 +1,12 @@
 name: 🚀 Publish Backend Docker image 🚀
 run-name: Publish Backend Docker image
 on:
-  pull_request:
-    types: [closed]
-
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Docker Image BE Version
+        default: 1.1.0
+        required: true
 env:
   DOCKER_HUB_NAMESPACE: yuyatinnefeld
   IMAGE_NAME: cloud-native-kiosk-backend
@@ -33,4 +36,4 @@ jobs:
         with:
           context: deploy/backend/
           push: true
-          tags: ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.IMAGE_NAME }}:1.1.0
+          tags: ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.IMAGE_NAME }}:${{ github.event.inputs.version }}

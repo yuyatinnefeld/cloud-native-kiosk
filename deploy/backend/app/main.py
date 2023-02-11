@@ -17,8 +17,7 @@ app = FastAPI(
 
 origins = [
     "http://ckn.com",
-    "http://ckn.com/api",
-    "http://localhost:8080",
+    "http://localhost:8000",
 ]
 
 app.add_middleware(

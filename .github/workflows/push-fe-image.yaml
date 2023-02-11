@@ -1,8 +1,12 @@
 name: 🚀 Publish Frontend Docker image
 run-name: Publish Frontend Docker image
 on:
-  pull_request:
-    types: [closed]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Docker Image FE Version
+        default: 1.1.0
+        required: true
 env:
   DOCKER_HUB_NAMESPACE: yuyatinnefeld
   IMAGE_NAME: cloud-native-kiosk-frontend
