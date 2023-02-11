@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: cnk-frontend-app
-        image: yuyatinnefeld/cloud-native-kiosk-frontend:1.0.0
+        image: yuyatinnefeld/cloud-native-kiosk-frontend:1.1.0
         ports:
         - containerPort: 5000
         env:
@@ -27,7 +27,7 @@ spec:
             path: /health
             port: 5000
       - name: cnk-backend-app
-        image: yuyatinnefeld/cloud-native-kiosk-backend:1.0.0
+        image: yuyatinnefeld/cloud-native-kiosk-backend:1.1.0
         ports:
         - containerPort: 80
         env:

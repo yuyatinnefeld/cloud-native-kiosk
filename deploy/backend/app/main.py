@@ -10,7 +10,7 @@ from app.routes.info import routes as info_routes
 
 app = FastAPI(
     title="cloud native kiosk backend",
-    version="1.0.0",
+    version="1.1.0",
     redoc_url=None,
     openaip_url=None,
 )
