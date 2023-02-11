@@ -6,10 +6,10 @@ spec:
   selector:
     app: cnk
   ports:
-  - name: http
+  - name: http-frontend
     port: 5000
     targetPort: 5000
-  - name: http
+  - name: http-backend
     port: 8000
     targetPort: 80
   type: LoadBalancer

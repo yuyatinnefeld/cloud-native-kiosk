@@ -81,7 +81,7 @@ def unittests():
 
 @app.route("/health")
 def cluster_health_check():
-    return "Health check👌"
+    return "Health check frontend👌"
 
 
 if __name__ == "__main__":

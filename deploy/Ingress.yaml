@@ -15,4 +15,11 @@ spec:
           service:
             name: cnk-service
             port:
-              name: http
+              name: http-frontend
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: cnk-service
+            port:
+              name: http-backend
