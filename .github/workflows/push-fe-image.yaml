@@ -1,7 +1,8 @@
 name: 🚀 Publish Frontend Docker image
 run-name: Publish Frontend Docker image
-on: [workflow_dispatch]
-
+on:
+  pull_request:
+    types: [closed]
 env:
   DOCKER_HUB_NAMESPACE: yuyatinnefeld
   IMAGE_NAME: cloud-native-kiosk-frontend
@@ -31,4 +32,4 @@ jobs:
         with:
           context: deploy/frontend/
           push: true
-          tags: ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.IMAGE_NAME }}:1.0.0
+          tags: ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.IMAGE_NAME }}:1.1.0
