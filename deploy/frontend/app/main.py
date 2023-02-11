@@ -79,7 +79,7 @@ def unittests():
     return "This is for Unittests"
 
 
-@app.route("/health")
+@app.route("/health_frontend")
 def cluster_health_check():
     return "Health check frontend👌"
 

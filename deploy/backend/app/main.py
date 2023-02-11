@@ -26,12 +26,17 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"hello": "backend world"}
+    return {"service": "hello backend world"}
 
 
-@app.get("/health")
+@app.get("/health_backend")
 def health_check():
     return "Health check backend👌"
+
+
+@app.get("/api/health_backend")
+def health_check2():
+    return "Health check backend 2👌"
 
 
 app.include_router(info_routes.router)
