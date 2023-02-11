@@ -24,7 +24,7 @@ spec:
           value: production
         readinessProbe:
           httpGet:
-            path: /health
+            path: /health_frontend
             port: 5000
       - name: cnk-backend-app
         image: yuyatinnefeld/cloud-native-kiosk-backend:1.1.0
@@ -35,7 +35,7 @@ spec:
           value: "80"
         livenessProbe:
           httpGet:
-            path: /health
+            path: /health_backend
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 5
