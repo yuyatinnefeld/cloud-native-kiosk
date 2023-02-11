@@ -15,9 +15,15 @@ app = FastAPI(
     openaip_url=None,
 )
 
+origins = [
+    "http://ckn.com",
+    "http://ckn.com/api",
+    "http://localhost:8080",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8000", "http://ckn.com"],
+    allow_origins=origins,
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -26,17 +32,12 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"service": "hello backend world"}
+    return {"service": "backend application"}
 
 
 @app.get("/health_backend")
 def health_check():
     return "Health check backend👌"
-
-
-@app.get("/api/health_backend")
-def health_check2():
-    return "Health check backend 2👌"
 
 
 app.include_router(info_routes.router)
