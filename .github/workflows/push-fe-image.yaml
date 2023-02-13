@@ -36,4 +36,4 @@ jobs:
         with:
           context: deploy/frontend/
           push: true
-          tags: ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.IMAGE_NAME }}:1.1.0
+          tags: ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.IMAGE_NAME }}:${{ github.event.inputs.version }}
