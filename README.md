@@ -1,29 +1,29 @@
 # Cloud Native Kiosk App on GCP / AWS
 
-## About
+## Overview
 This GitHub project focuses on learning cloud native technologies and frameworks. The objective is to gain hands-on experience with the latest tools and techniques for building scalable and resilient cloud-based applications. Topics covered include Docker, Kubernetes, GCP, AWS, Terraform, and best practices for security, testing, and CI/CD. The project provides interactive, hands-on learning through practical exercises and real-world scenarios. Whether you're a beginner or experienced developer, this project offers the knowledge and skills needed to become proficient in cloud computing.
 
 ## Cloud Native Kiosk
- The cloud native kiosk is a monorepo project which built by Python framework Flask (FE) + FastAPI (BE). You may see a live demo of this project on GCP from the following link. http://xxx.com. This App has login system functionality. The guest user is able to browse, search and add product to cart only. Checkout and payment option is available for registered users.
+The cloud native kiosk is a monorepo project built using the Python frameworks Flask (for the frontend) and FastAPI (for the backend). You can view a live demo of the project on GCP at http://xxx.com. The app has a login system, where guests can browse, search, and add products to the cart, but only registered users can checkout and make payments.
 
 ## Motivation
-I decided to continue the project for the following reasons:
-- to build a modern Python monorepo project with Flask and FastAPI which you can use as a template for your business case.
-- to use cloud native and GitOps tool like k8s, Prometheus, argoCD in practice.
-- to learn cloud technology like GCP, AWS, Terraform, Github
+The author decided to continue this project for the following reasons:
+- To build a modern Python monorepo project with Flask and FastAPI that can serve as a template for your own business cases.
+- To gain hands-on experience with cloud native and GitOps tools such as k8s, Prometheus, and ArgoCD.
+- To learn about cloud technologies like GCP, AWS, Terraform, and GitHub.
 
 ## Application Use Cases
-- users can see kiosk items
-- users can create and manage their account
-- users can add items to shopping cart
+- Users can view items available on the kiosk.
+- Users can create and manage their account.
+- Users can add items to their shopping cart.
 
-## Requirements and Tech Stack Choices:
+## Requirements and Technology Stack:
 - Frontend Framework: Flask
 - Backend Framework: FastAPI
 - Deployment Manger: Kubernetes
 - Continuous Integration Tool: GitHub Actions
 - Continuous Delivery Tool: ArgoCD
-- Hosting: Google Cloud -> Hybrid Cloud (GCP + RPi + AWS)
+- Hosting: Google Cloud (with a hybrid cloud setup using GCP, RPi, and AWS)
 
 ## 1. Local Debugging (Application)
 ```bash
@@ -32,21 +32,21 @@ cat .vscode/launch.json
 
 ## 2. Local Debugging (Cluster)
 
-### Run a local cluster (minikube)
+### Running a Local Cluster (minikube)
 ```bash
-# deployment local k8s cluster
+# Deploy a local k8s cluster
 minikube start --cpus 2 --memory 8192
 minikube profile list
 minikube ip
 
-# activate minikube ingress controller for use ./deploy/ingress.yaml
+# Enable minikube ingress controller to use ./deploy/ingress.yaml
 minikube addons enable ingress
 
-# verify the ingress controller
+# Verify the ingress controller
 kubectl get pods -n ingress-nginx | grep ingress-nginx-controller
 ```
 
-### Map the local cluster IP and domain for the accessing domain locally
+### Mapping the Local Cluster IP and Domain for Local Access
 ```bash
 vi /etc/hosts
 ```
@@ -59,17 +59,17 @@ vi /etc/hosts
 # End of section
 ```
 
-### 2.1. Local Debugging Manually
+### 2.1. Debugging Manually
 ```bash
-# deploy components
+# Deploy components
 kubectl apply -f deploy/pods.yaml
 kubectl apply -f deploy/service.yaml
 kubectl apply -f deploy/ingress.yaml
 
-# verify if the ingress recieved the cluster ip
+# Verify the ingress received the cluster IP
 kubectl get ingress --watch
 
-# open the url
+# Open the URL
 open http://cnk.com
 ```
 
@@ -78,23 +78,23 @@ open http://cnk.com
 
 
 ```bash
-# install argocd in your local k8s-cluster
+# Install ArgoCD in your local k8s-cluster
 bash argocd/start_argocd.sh
 
-# check if pods are available
+# Check if pods are available
 kubectl get pods --namespace argocd
 
-# open argocd ui
+# Open argocd ui
 bash argocd/open_argocd.sh
 open http://localhost:8080
 
-# start to sync argocd+github > deploy application clusters
+# Start to sync argocd+github > deploy application clusters
 kubectl apply -f ./argocd/argocd.yaml
 
-# test with test-local-domain
+# Test with test-local-domain
 open http://cnk.com
 
-# test with forward service
+# Test with forward service
 NAME_SPACE="cnk-ns"
 PORT=5000
 SERVICE_NAME="cnk-service"
@@ -104,7 +104,7 @@ kubectl port-forward service/$SERVICE_NAME $PORT -n $NAME_SPACE
 open http://localhost:5000
 ```
 
-## Monitoring
+## 3. Monitoring
 ```bash
 # install monitoring tool (prometheus + grafana)
 bash monitoring/prometheus.sh
@@ -116,7 +116,7 @@ bash monitoring/grafana.sh
 open http://localhost:3000
 ```
 
-## Clean up
+## 4. Clean up
 ```bash
 kubectl delete -f deploy/ingress.yaml
 kubectl delete -f deploy/service.yaml
