@@ -5,6 +5,12 @@ from app.db.engine import Base
 
 
 class Item(Base):
+    """Takes a string and returns a string.
+
+    Args:
+        Base (_type_): Base Model of sqlalchemy
+    """
+
     __tablename__ = "items"
 
     id = Column(Integer, primary_key=True, index=True)

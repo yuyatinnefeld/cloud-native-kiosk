@@ -31,11 +31,17 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
+    """
+    This function returns a dictionary with a single key-value pair.
+    The key is "service" and the value is "backend application".
+    This function is used to test the API documentation.
+    """
     return {"service": "backend application"}
 
 
 @app.get("/health_backend")
 def health_check():
+    """This function is used for the k8s health check and returns a string that says "Health check backend👌"""
     return "Health check backend👌"
 
 

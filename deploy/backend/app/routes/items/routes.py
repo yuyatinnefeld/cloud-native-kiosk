@@ -25,6 +25,16 @@ def get_db():
 
 @router.get("/items/", response_model=List[schemas.Item])
 def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    """returns a list of items.
+
+    Args:
+        skip (int, optional): The number of items to skip. Defaults to 0.
+        limit (int, optional): The number of items to limit. Defaults to 100.
+        db (Session, optional): The database session. Defaults to Depends(get_db).
+
+    Returns:
+        List: A list of items.
+    """
     items = crud.get_items(db, skip=skip, limit=limit)
     return items
 
