@@ -25,7 +25,7 @@ def get_db():
 
 
 @router.post("/users/", response_model=schemas.User)
-def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
+def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)) -> models.User:
     """
     Creates a new user in the database.
     Args:
@@ -36,16 +36,17 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
         HTTPException: If the email is already registered.
 
     Returns:
-        ???: The created user.
+        models.User: The created user.
     """
     db_user = crud.get_user_by_email(db, email=user.email)
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
+
     return crud.create_user(db=db, user=user)
 
 
 @router.get("/users/", response_model=List[schemas.User])
-def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)) -> List:
     """
     Reads a list of users from the database.
 
@@ -55,14 +56,14 @@ def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
         db (Session, optional): Database session.. Defaults to Depends(get_db).
 
     Returns:
-        ???: List of users.
+        List[models.User]: List of users.
     """
     users = crud.get_users(db, skip=skip, limit=limit)
     return users
 
 
 @router.get("/users/{user_id}", response_model=schemas.User)
-def read_user(user_id: int, db: Session = Depends(get_db)):
+def read_user(user_id: int, db: Session = Depends(get_db)) -> models.User:
     """Reads a user from the database.
 
     Args:
@@ -73,7 +74,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
         HTTPException: If the user is not found.
 
     Returns:
-        ???: The database user
+        models.User: The database user
     """
     db_user = crud.get_user(db, user_id=user_id)
     if db_user is None:

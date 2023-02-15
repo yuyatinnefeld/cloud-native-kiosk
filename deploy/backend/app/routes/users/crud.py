@@ -1,10 +1,12 @@
+from typing import List
+
 from sqlalchemy.orm import Session
 
 from app.routes.users import models
 from app import schemas
 
 
-def get_user(db: Session, user_id: int):
+def get_user(db: Session, user_id: int) -> models.User:
     """Get a user from the database by the user id.
 
     Args:
@@ -12,12 +14,13 @@ def get_user(db: Session, user_id: int):
         user_id (int): The id of the user to get.
 
     Returns:
-        ???: The user with id `user_id` or `None` if no user with that id exists.
+        models.User: The user with id `user_id` or `None` if no user with that id exists.
     """
-    return db.query(models.User).filter(models.User.id == user_id).first()
+    result = db.query(models.User).filter(models.User.id == user_id).first()
+    return result
 
 
-def get_user_by_email(db: Session, email: str):
+def get_user_by_email(db: Session, email: str) -> models.User:
     """Get a user by email.
 
     Args:
@@ -25,13 +28,14 @@ def get_user_by_email(db: Session, email: str):
         email (str): The email of the user.
 
     Returns:
-        ???: The user with the given email.
+        models.User: The user with the given email.
 
     """
-    return db.query(models.User).filter(models.User.email == email).first()
+    result = db.query(models.User).filter(models.User.email == email).first()
+    return result
 
 
-def get_users(db: Session, skip: int = 0, limit: int = 100):
+def get_users(db: Session, skip: int = 0, limit: int = 100) -> List:
     """Get a list of users from the database.
 
     Args:
@@ -42,10 +46,11 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
     Returns:
         List[models.User]: The list of users.
     """
-    return db.query(models.User).offset(skip).limit(limit).all()
+    result = db.query(models.User).offset(skip).limit(limit).all()
+    return result
 
 
-def create_user(db: Session, user: schemas.UserCreate):
+def create_user(db: Session, user: schemas.UserCreate) -> models.User:
     """Create a new user in the database.
 
     Args:
@@ -53,7 +58,7 @@ def create_user(db: Session, user: schemas.UserCreate):
         user (schemas.UserCreate): The user to create.
 
     Returns:
-        ???: The created user.
+        models.User: The created user.
     """
     fake_hashed_password = user.password + "notreallyhashed"
     db_user = models.User(email=user.email, hashed_password=fake_hashed_password)

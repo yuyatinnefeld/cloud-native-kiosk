@@ -13,12 +13,15 @@ def get_items(db: Session, skip: int = 0, limit: int = 100):
         limit (int, optional): The number of items to limit to. Defaults to 100.
 
     Returns:
-        ???: The items from the database.
+        List: The list of items from the database.
     """
-    return db.query(models.Item).offset(skip).limit(limit).all()
+    result = db.query(models.Item).offset(skip).limit(limit).all()
+    return result
 
 
-def create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):
+def create_user_item(
+    db: Session, item: schemas.ItemCreate, user_id: int
+) -> models.Item:
     """Create a new item for a user.
 
     Args:
@@ -27,7 +30,7 @@ def create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):
         user_id (int): The user to create the item for.
 
     Returns:
-        ???: The created item.
+        models.Item: The created item.
     """
     db_item = models.Item(**item.dict(), owner_id=user_id)
     db.add(db_item)
