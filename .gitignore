@@ -246,3 +246,6 @@ terraform.rc
 terragrunt-debug.tfvars.json
 
 # End of https://www.toptal.com/developers/gitignore/api/terraform,python,macos,terragrunt
+
+# sqllite cache
+sql_app.db
