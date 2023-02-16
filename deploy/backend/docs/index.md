@@ -1,14 +1,17 @@
 # cnk backend service
 
-docker image for backend service [dockerhub](https://hub.docker.com/repository/docker/yuyatinnefeld/cloud-native-kiosk-backend/general).
+docker image for the backend service [Docker Hub](https://hub.docker.com/repository/docker/yuyatinnefeld/cloud-native-kiosk-backend/general).
 
-## Local Run
 
-* `pip install -r requirements.txt` - install pacakges
-* `uvicorn main:app --reload` - Start the FastAPI server.
-* `open http://127.0.0.1:8000` - Open the pages
+## Local Debugging
 
-## Backend Project layout
+* Navigate into the working directory. - `cd ./deploy/backend`
+* Install Python pacakges. - `pip install -r requirements.txt`
+* Start the FastAPI server. -`uvicorn main:app --reload`
+* Open the site. - `open http://127.0.0.1:8000`
+
+
+## Backend Project Layout
 
     backend/
         app                         # FastAPI Source code
