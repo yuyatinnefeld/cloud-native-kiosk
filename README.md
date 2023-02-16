@@ -3,8 +3,12 @@
 ## Overview
 This GitHub project focuses on learning cloud native technologies and frameworks. The objective is to gain hands-on experience with the latest tools and techniques for building scalable and resilient cloud-based applications. Topics covered include Docker, Kubernetes, GCP, AWS, Terraform, and best practices for security, testing, and CI/CD. The project provides interactive, hands-on learning through practical exercises and real-world scenarios. Whether you're a beginner or experienced developer, this project offers the knowledge and skills needed to become proficient in cloud computing.
 
-## Cloud Native Kiosk
+## Cloud Native Kiosk (cnk)
 The cloud native kiosk is a monorepo project built using the Python frameworks Flask (for the frontend) and FastAPI (for the backend). You can view a live demo of the project on GCP at http://xxx.com. The app has a login system, where guests can browse, search, and add products to the cart, but only registered users can checkout and make payments.
+
+## Project Source Code Documentation
+https://yuyatinnefeld.github.io/cloud-native-kiosk
+
 
 ## Motivation
 The author decided to continue this project for the following reasons:

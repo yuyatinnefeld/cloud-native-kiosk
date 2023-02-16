@@ -1,7 +1,7 @@
 site_name: ckn backend service
 site_dir: public
-site_url: https://yuyatinnefeld.gitlab.io/cloud-native-kiosk
-repo_url: https://yuyatinnefeld.gitlab.io/cloud-native-kiosk
+site_url: https://yuyatinnefeld.github.io/cloud-native-kiosk
+repo_url: https://github.com/yuyatinnefeld/cloud-native-kiosk
 theme:
     name: material
     palette:
