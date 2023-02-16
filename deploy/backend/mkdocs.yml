@@ -1,0 +1,33 @@
+site_name: ckn backend service
+site_dir: public
+site_url: https://yuyatinnefeld.gitlab.io/cloud-native-kiosk
+repo_url: https://yuyatinnefeld.gitlab.io/cloud-native-kiosk
+theme:
+    name: material
+    palette:
+      primary: teal
+
+markdown_extensions:
+- admonition
+- pymdownx.details
+- pymdownx.superfences
+
+strict: false
+
+plugins:
+  - search
+  - gen-files:
+      scripts:
+        - docs/gen_mkdocs_pages.py
+  - mkdocstrings:
+      handlers:
+        python:
+          rendering:
+            show_root_heading: true
+            show_signature_annotations: true
+            show_source: false
+          setup_commands:
+            - import sys
+            - sys.path.append("app/db");sys.path.append("app/routes");sys.path.append("app/modules")
+          rendering:
+            show_root_heading: false

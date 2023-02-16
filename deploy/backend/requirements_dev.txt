@@ -1,0 +1,10 @@
+# packages for mkdocs
+jinja2==3.0.0
+Markdown==3.3.6
+mkdocs==1.2.3
+mkdocs-autorefs==0.4.1
+mkdocs-gen-files==0.3.3
+mkdocs-material==7.3.6
+mkdocs-material-extensions==1.0.3
+mkdocstrings==0.19.0
+mkdocstrings-python==0.7.1
