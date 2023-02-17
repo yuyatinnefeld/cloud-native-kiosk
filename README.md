@@ -66,9 +66,9 @@ vi /etc/hosts
 ### 2.1. Debugging Manually
 ```bash
 # Deploy components
-kubectl apply -f deploy/pods.yaml
-kubectl apply -f deploy/service.yaml
-kubectl apply -f deploy/ingress.yaml
+kubectl apply -f deploy/k8s/pods.yaml
+kubectl apply -f deploy/k8s/service.yaml
+kubectl apply -f deploy/k8s/ingress.yaml
 
 # Verify the ingress received the cluster IP
 kubectl get ingress --watch
