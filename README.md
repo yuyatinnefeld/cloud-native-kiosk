@@ -66,9 +66,9 @@ vi /etc/hosts
 ### 2.1. Debugging Manually
 ```bash
 # Deploy components
-kubectl apply -f deploy/pods.yaml
-kubectl apply -f deploy/service.yaml
-kubectl apply -f deploy/ingress.yaml
+kubectl apply -f deploy/k8s/pods.yaml
+kubectl apply -f deploy/k8s/service.yaml
+kubectl apply -f deploy/k8s/ingress.yaml
 
 # Verify the ingress received the cluster IP
 kubectl get ingress --watch
@@ -128,3 +128,49 @@ kubectl delete -f deploy/pods.yaml
 
 minikube delete --all
 ```
+
+
+## IaC via Terraform
+
+### Providers
+- google
+
+### Modules
+- api
+- gke
+- service_account
+
+### Resources
+- google_container_cluster
+- google_container_node_pool
+- google_project_service
+- google_service_account
+
+### Outputs
+- gke_cluster_sa_email
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+No requirements.
+
+## Providers
+
+No providers.
+
+## Modules
+
+No modules.
+
+## Resources
+
+No resources.
+
+## Inputs
+
+No inputs.
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
