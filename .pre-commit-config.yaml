@@ -7,11 +7,16 @@ repos:
     -   id: requirements-txt-fixer
     -   id: end-of-file-fixer
     -   id: trailing-whitespace
+##### PYTHON #####
+-   repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
+    hooks:
+    -   id: flake8
+        args: [--config=deploy/backend/setup.cfg]
 -   repo: https://github.com/psf/black
     rev: 23.1.0
     hooks:
     -   id: black
-##### PYTHON #####
 -   repo: https://github.com/pre-commit/mirrors-mypy
     rev: 'v1.0.0'
     hooks:
@@ -24,12 +29,13 @@ repos:
       args: [--disable=all, --enable=unused-import]
 ##### TERRAFORM #####
 - repo: https://github.com/terraform-docs/terraform-docs
-  rev: "v0.16.0"
+  rev: 'v0.16.0'
   hooks:
     - id: terraform-docs-go
-      args: ["markdown", "table", "--output-file", "README.md", "./"]
+      args: ['markdown', 'table', '--output-file', 'README.md', './']
 - repo: https://github.com/antonbabenko/pre-commit-terraform
-  rev: "v1.74.1"
+  rev: 'v1.74.1'
   hooks:
     - id: terraform_fmt
     - id: terraform_validate
+#    - id: terrascan
