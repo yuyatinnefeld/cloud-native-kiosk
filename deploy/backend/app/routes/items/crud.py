@@ -9,8 +9,8 @@ def get_items(db: Session, skip: int = 0, limit: int = 100):
 
     Args:
         db (Session): The database session.
-        skip (int, optional): The number of items to skip. Defaults to 0.
-        limit (int, optional): The number of items to limit to. Defaults to 100.
+        skip (int, optional): The number of items to skip.
+        limit (int, optional): The number of items to limit to.
 
     Returns:
         List: The list of items from the database.

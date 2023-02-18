@@ -26,10 +26,9 @@ def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)) -
     """returns a list of items.
 
     Args:
-        skip (int, optional): The number of items to skip. Defaults to 0.
-        limit (int, optional): The number of items to limit. Defaults to 100.
-        db (Session, optional): The database session. Defaults to Depends(get_db).
-
+        skip (int, optional): The number of items to skip.
+        limit (int, optional): The number of items to limit.
+        db (Session, optional): The database session.
     Returns:
         List: A list of items.
     """

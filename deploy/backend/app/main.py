@@ -41,7 +41,10 @@ def read_root():
 
 @app.get("/health_backend")
 def health_check():
-    """This function is used for the k8s health check and returns a string that says "Health check backend👌"""
+    """
+    This function is used for the k8s health check
+    and returns a string that says "Health check backend👌
+    """
     return "Health check backend👌"
 
 
