@@ -1,5 +1,5 @@
 
-name: Terraform Service Provisioning
+name: 🚀Terraform Service Provisioning🚀
 
 on:
   workflow_dispatch:
@@ -8,6 +8,9 @@ on:
         description: terraform_version
         default: latest
         required: true
+
+env:
+  GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SERVICE_KEY }}
 
 jobs:
   terraform:
@@ -26,3 +29,8 @@ jobs:
       id: fmt
       run: terraform fmt -check
       continue-on-error: true
+
+    - name: Terraform init
+      id: init
+      run: terraform init
+      shell: bash
