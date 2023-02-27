@@ -1,8 +1,12 @@
 name: 📄 Documentation Generator for cnk backend 📄
 on:
-  push:
-    branches:
-      - develop
+  # trigger the action after the python ci tests
+  workflow_run:
+    workflows: ["🧪 Python CI Test for Backend Service 🧪"]
+    branches: [develop]
+    types:
+      - completed
+      
 jobs:
   deploy:
     runs-on: ubuntu-latest
