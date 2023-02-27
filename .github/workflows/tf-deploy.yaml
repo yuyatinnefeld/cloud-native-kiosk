@@ -1,0 +1,35 @@
+
+name: Terraform Service Provisioning
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: provisioning version
+        default: 0.0.1
+        required: true
+
+jobs:
+  terraform:
+    name: 'Provision GCP Services'
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      run: export GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GCP_SERVICE_KEY }}
+
+    - name: Terraform Init
+      working-directory: ./deploy/terraform
+      run: terraform init
+
+    - name: Terraform Format
+      working-directory: ./deploy/terraform
+      run: terraform fmt -check
