@@ -24,11 +24,12 @@ jobs:
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
-      run: export GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GCP_SERVICE_KEY }}
 
     - name: Terraform Init
       working-directory: ./deploy/terraform
-      run: terraform init
+      run: |
+        export GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GCP_SERVICE_KEY }}
+        terraform init
 
     - name: Terraform Format
       working-directory: ./deploy/terraform
