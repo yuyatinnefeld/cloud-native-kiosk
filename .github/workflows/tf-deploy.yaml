@@ -9,9 +9,6 @@ on:
         default: latest
         required: true
 
-env:
-  GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SERVICE_KEY }}
-
 jobs:
   terraform:
     name: 'Provision GCP Services'
@@ -29,6 +26,11 @@ jobs:
       id: fmt
       run: terraform fmt -check
       continue-on-error: true
+
+    - name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: '${{ secrets.GCP_SERVICE_KEY }}'
 
     - name: Terraform init
       id: init
