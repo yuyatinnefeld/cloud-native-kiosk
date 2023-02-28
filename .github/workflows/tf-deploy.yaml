@@ -35,4 +35,11 @@ jobs:
     - name: Terraform init
       id: init
       run: terraform init
-      shell: bash
+
+    - name: Terraform plan
+      id: plan
+      run: terraform plan
+
+    - name: Terraform apply
+      id: apply
+      run: terraform apply
