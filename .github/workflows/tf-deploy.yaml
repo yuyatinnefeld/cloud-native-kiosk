@@ -1,5 +1,5 @@
 
-name: 🚀Terraform Service Provisioning🚀
+name: 🏗️ Terraform GCP Resoruece Provisioning 🏗️
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   terraform:
-    name: 'Provision GCP Services'
+    name: 'Provisioning GCP Resorueces'
     runs-on: ubuntu-latest
     environment: production
     defaults:
@@ -41,4 +41,4 @@ jobs:
       run: terraform validate
 
     - name: Terraform Plan
-      run: terraform plan
+      run: terraform plan -lock=false
