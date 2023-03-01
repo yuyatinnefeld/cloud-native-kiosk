@@ -33,6 +33,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: ${{ github.event.inputs.terraform_version }}
+        terraform_wrapper: false
 
     - name: Terraform Init
       run: terraform init
