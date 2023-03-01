@@ -6,40 +6,39 @@ on:
     inputs:
       terraform_version:
         description: terraform_version
-        default: latest
+        default: 1.1.2
         required: true
 
 jobs:
   terraform:
     name: 'Provision GCP Services'
     runs-on: ubuntu-latest
+    environment: production
     defaults:
       run:
-        shell: bash
         working-directory: ./deploy/terraform
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: hashicorp/setup-terraform@v2
-
-    - name: Terraform fmt
-      id: fmt
-      run: terraform fmt -check
-      continue-on-error: true
+    - name: Checkout code
+      uses: actions/checkout@v2
 
     - name: 'Authenticate to Google Cloud'
-      uses: 'google-github-actions/auth@v0'
+      uses: google-github-actions/setup-gcloud@master
       with:
-        credentials_json: '${{ secrets.GCP_SERVICE_KEY }}'
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        service_account_key: ${{ secrets.GCP_SERVICE_KEY }}
+        export_default_credentials: true
 
-    - name: Terraform init
-      id: init
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: ${{ github.event.inputs.terraform_version }}
+
+    - name: Terraform Init
       run: terraform init
 
-    - name: Terraform plan
-      id: plan
-      run: terraform plan
+    - name: Terraform Validate
+      run: terraform validate
 
-    - name: Terraform apply
-      id: apply
-      run: terraform apply
+    - name: Terraform Plan
+      run: terraform plan
