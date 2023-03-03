@@ -149,28 +149,22 @@ minikube delete --all
 ### Outputs
 - gke_cluster_sa_email
 
-<!-- BEGIN_TF_DOCS -->
-## Requirements
+## Test DB Connection
 
-No requirements.
+```bash
+# TEST IN CLOUD SHELL
+INSTANCE_NAME="cnk-sql-instance"
+gcloud sql connect ${INSTANCE_NAME} --user=postgres --quiet
 
-## Providers
+# TEST WITH PROXY
 
-No providers.
+# download the Cloud SQL Proxy
+curl -o cloud_sql_proxy https://dl.google.com/cloudsql/cloud_sql_proxy.darwin.amd64
 
-## Modules
+# make the proxy executable
+chmod +x cloud_sql_proxy
 
-No modules.
+# create proxy connection
+./cloud_sql_proxy -instances=${INSTANCE_NAME}=tcp:3306
 
-## Resources
-
-No resources.
-
-## Inputs
-
-No inputs.
-
-## Outputs
-
-No outputs.
-<!-- END_TF_DOCS -->
+```

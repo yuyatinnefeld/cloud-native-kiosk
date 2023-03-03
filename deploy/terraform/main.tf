@@ -13,23 +13,10 @@ provider "google" {
   zone    = var.zone
 }
 
-
 module "api" {
   source     = "./module/api"
   project_id = var.project_id
 }
-
-
-module "gke" {
-  source   = "./module/gke"
-  region   = var.region
-  sa_email = module.service_account.gke_cluster_sa_email
-  label    = format("%s-%s", var.label, var.env)
-  depends_on = [
-    module.api, module.service_account
-  ]
-}
-
 
 module "service_account" {
   source = "./module/service_account"
@@ -38,3 +25,23 @@ module "service_account" {
     module.api
   ]
 }
+
+# module "gke" {
+#   source   = "./module/gke"
+#   region   = var.region
+#   sa_email = module.service_account.gke_cluster_sa_email
+#   label    = format("%s-%s", var.label, var.env)
+#   depends_on = [
+#     module.api, module.service_account
+#   ]
+# }
+
+# module "cloud_sql" {
+#   source            = "./module/cloud_sql"
+#   region            = var.region
+#   sql_version       = var.sql_version
+#   sql_instance_name = var.sql_instance_name
+#   db_name           = var.db_name
+#   db_user           = var.db_user
+#   db_password       = var.db_password
+# }
