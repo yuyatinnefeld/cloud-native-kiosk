@@ -46,11 +46,7 @@ jobs:
       env:
         TF_VAR_db_password: ${{ secrets.CLOUD_SQL_PWD }}
 
-    - name: Save Plan as Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: terraform-plan
-        path: ./tfplan
-
     - name: Terraform Apply
-      run: terraform apply tfplan --auto-approve
+      run: terraform apply --auto-approve
+      env:
+        TF_VAR_db_password: ${{ secrets.CLOUD_SQL_PWD }}
