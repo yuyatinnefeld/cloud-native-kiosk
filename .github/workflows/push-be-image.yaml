@@ -1,4 +1,4 @@
-name: 🚀 Publish Backend Docker image 🚀
+name: 🚀Publish BE Docker🚀
 run-name: Publish Backend Docker image
 on:
   workflow_dispatch:

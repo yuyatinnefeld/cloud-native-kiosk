@@ -1,4 +1,4 @@
-name: 🚀 Publish Frontend Docker image
+name: 🚀Publish FE Docker🚀
 run-name: Publish Frontend Docker image
 on:
   workflow_dispatch:

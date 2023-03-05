@@ -1,4 +1,4 @@
-name: 🧪 Python CI Test for Backend Service 🧪
+name: 🧪Python CI BE Test🧪
 
 on: [push, pull_request]
 

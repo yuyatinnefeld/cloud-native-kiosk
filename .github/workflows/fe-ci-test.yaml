@@ -1,12 +1,10 @@
-name: 🧪 Python CI Test for Frontend Service 🧪
+name: 🧪Python CI FE Test🧪
 
 on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
