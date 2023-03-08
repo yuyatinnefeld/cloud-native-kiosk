@@ -1,0 +1,11 @@
+asyncio==3.4.3
+fastapi==0.75.2
+google-cloud-secret-manager==2.8.0
+gunicorn==20.1.0
+httpx
+pylint
+pymsteams[async]==0.2.1
+pytest
+pytest-asyncio
+pytest-cov
+uvicorn==0.17.4
