@@ -1,3 +1,3 @@
 ### GENERAL ENV ###
-project_id = "yuyatinnefeld-dev"
+project_id = "<your-gcp-project-id>"
 env        = "dev"

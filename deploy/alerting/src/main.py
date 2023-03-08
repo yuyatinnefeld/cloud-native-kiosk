@@ -9,8 +9,9 @@ import src.slack_messenger as slack_messenger
 import src.schemas as schemas
 
 app = FastAPI()
-project = os.environ["GCP_PROJECT_ID"]
+
 env = os.environ["ENV"]
+project = os.environ["GCP_PROJECT_ID"]
 
 
 @app.post("/teams", response_model=schemas.Message)
