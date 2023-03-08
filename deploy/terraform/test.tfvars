@@ -1,2 +1,2 @@
-project_id = "yuyatinnefeld-test"
+project_id = "<your-gcp-project-id>"
 env        = "test"
