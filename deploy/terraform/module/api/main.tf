@@ -8,6 +8,11 @@ resource "google_project_service" "container" {
   service = "container.googleapis.com"
 }
 
+resource "google_project_service" "cloud_run" {
+  project = var.project_id
+  service = "run.googleapis.com"
+}
+
 resource "google_project_service" "cloud_sql_admin" {
   project = var.project_id
   service = "sqladmin.googleapis.com"
