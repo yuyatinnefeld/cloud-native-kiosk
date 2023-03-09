@@ -26,6 +26,15 @@ module "service_account" {
   ]
 }
 
+module "secrets" {
+  source = "./module/secrets"
+  region = var.region
+  label  = format("%s-%s", var.label, var.env)
+  depends_on = [
+    module.api
+  ]
+}
+
 # module "gke" {
 #   source   = "./module/gke"
 #   region   = var.region
