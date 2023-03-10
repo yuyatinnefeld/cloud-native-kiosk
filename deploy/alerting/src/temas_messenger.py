@@ -7,7 +7,7 @@ from src.utils import get_webhook
 
 
 def teams_notification(message: schemas.Message, project, env, provider) -> bool:
-    webhook_url = get_webhook(message.title, project, env, provider)
+    webhook_url = get_webhook(env, provider)
     teams_message = pymsteams.connectorcard(webhook_url)
     teams_message.title(message.title)
     teams_message.text(message.text)
