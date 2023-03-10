@@ -7,7 +7,7 @@ from src.utils import get_webhook
 
 
 def slack_notification(message: schemas.Message, project, env, provider) -> bool:
-    webhook_url = get_webhook(message.title, project, env, provider)
+    webhook_url = get_webhook(env, provider)
     http = urllib3.PoolManager()
 
     attachments = [

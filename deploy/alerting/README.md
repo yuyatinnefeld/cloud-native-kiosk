@@ -30,7 +30,7 @@ open http://127.0.0.1:8080/docs
 ## Local Deployment
 ```bash
 SERVICE_NAME="cnk-alerting"
-GCP_IMAGE_NAME="eu.gcr.io/${PROJECT_ID}/cnk-alerting:1.0.0"
+GCP_IMAGE_NAME="eu.gcr.io/${GCP_PROJECT_ID}/cnk-alerting:1.0.0"
 CLOUD_RUN_ID="<your-cloud-run-id>"
 
 # push the image
@@ -44,8 +44,9 @@ gcloud run deploy ${SERVICE_NAME} \
     --memory=512Mi \
     --min-instances=1 \
     --max-instances=2 \
-    --no-allow-unauthenticated \
-    --update-env-vars=GCP_PROJECT_ID=$PROJECT_ID,ENV=DEV
+    --allow-unauthenticated \
+    --update-env-vars=GCP_PROJECT_ID=${GCP_PROJEC_ID},ENV=DEV \
+    --update-secrets=webhook_url_teams_error=webhook_url_teams_error:latest
 
 open https://${SERVICE_NAME}-${CLOUD_RUN_ID}-ew.a.run.app/docs
 ```
