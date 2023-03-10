@@ -18,6 +18,11 @@ resource "google_project_service" "cloud_sql_admin" {
   service = "sqladmin.googleapis.com"
 }
 
+resource "google_project_service" "secretmanager" {
+  project = var.project_id
+  service = "secretmanager.googleapis.com"
+}
+
 resource "google_project_service" "serviceusage" {
   project = var.project_id
   service = "serviceusage.googleapis.com"
