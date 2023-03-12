@@ -6,7 +6,7 @@ import src.schemas as schemas
 from src.utils import get_webhook
 
 
-def slack_notification(message: schemas.Message, project, env, provider) -> bool:
+def slack_notification(message: schemas.Message, env, provider) -> bool:
     webhook_url = get_webhook(env, provider)
     http = urllib3.PoolManager()
 
@@ -33,7 +33,7 @@ def slack_notification(message: schemas.Message, project, env, provider) -> bool
             headers={"Content-Type": "application/json"},
             retries=False,
         )
-        print("status: ", response.status)
+        print("slack response status: ", response.status)
         return True
 
     except Exception as exc:

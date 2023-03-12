@@ -11,23 +11,20 @@ import src.schemas as schemas
 app = FastAPI()
 
 env = os.environ["ENV"]
-project = os.environ["GCP_PROJECT_ID"]
 
 
 @app.post("/teams", response_model=schemas.Message)
 async def teams_chat(message: schemas.Message):
-    provider = "TEAMS"
     threading.Thread(
-        target=ms_messenger.teams_notification, args=(message, project, env, provider)
+        target=ms_messenger.teams_notification, args=(message, env, "TEAMS")
     ).start()
     return message
 
 
 @app.post("/slack")
 async def slack_chat(message: schemas.Message):
-    provider = "SLACK"
     threading.Thread(
         target=slack_messenger.slack_notification,
-        args=(message, project, env, provider),
+        args=(message, env, "SLACK"),
     ).start()
     return message
