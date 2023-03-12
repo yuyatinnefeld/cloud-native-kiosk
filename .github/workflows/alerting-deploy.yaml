@@ -46,7 +46,7 @@ jobs:
         memory: 512Mi
         min-instances: 1
         max-instances: 2
-        update-env-vars: ENV=${{ env.ENV }}
+        update-env-vars: ENV=${{ env.ENV }},GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}
         update-secrets: -secrets=webhook_url_teams_error=webhook_url_teams_error:latest,webhook_url_slack_error=webhook_url_slack_error:latest
 
     - name: Integration Test
