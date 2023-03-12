@@ -10,6 +10,14 @@ env:
 
 
 jobs:
+  gcp-application:
+    name: 'Provisioning GCP Application'
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        working-directory: ./deploy/alerting
+
     steps:
     - uses: 'actions/checkout@v3'
 
