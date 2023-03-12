@@ -1,5 +1,5 @@
-name: 🚀ALERTING SERVICE🚀
-run-name: Publish GCP Alerting Service
+name: 🚀Publish Alerting App🚀
+run-name: Publish GCP Alerting Application
 on:
   workflow_dispatch:
     inputs:
@@ -41,7 +41,7 @@ jobs:
         export_default_credentials: true
 
     - name: Unit Test
-      run: echo "Run Unit Tests"
+      run: python -m pytest -rA tests/
 
     - name: Push Docker Image
       run: |-
@@ -63,7 +63,7 @@ jobs:
           --quiet
 
     - name: Check Response Status
-      run: curl -I https://${{ env.SERVICE_NAME }}-${{ env.CLOUD_RUN_ID }}-ew.a.run.app/docs
+      run: curl -I https://${{ env.SERVICE_NAME }}-${{ secrets.CLOUD_RUN_ID }}-ew.a.run.app/docs
 
     - name: Integration Test
       run: echo "Call API endpoints with google OAuth"
