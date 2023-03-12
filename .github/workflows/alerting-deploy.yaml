@@ -1,0 +1,31 @@
+name: 🚀ALERTING SERVICE🚀
+run-name: Publish GCP Alerting Service
+on: [push]
+
+env:
+  ENV: DEV
+  TEAMS_WEBHOOK: ${{ secrets.TEAMS_WEBHOOK }}
+  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+  GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+
+
+jobs:
+    steps:
+    - uses: 'actions/checkout@v3'
+
+    - uses: 'google-github-actions/auth@v1'
+      with:
+        workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+        service_account: ${{ secrets.GCP_SERVICE_KEY }}
+
+    - name: Unit Test
+      run: echo "Run Unit Tests"
+
+    - name: Deploy GCP Cloud Run
+      uses: 'google-github-actions/deploy-cloudrun@v1'
+      with:
+        service: 'alerting-cloud-run'
+        image: 'eu.gcr.io/${GCP_PROJECT_ID}/cnk-alerting:1.0.0
+
+    - name: Integration Test
+      run: echo "Call the GCP Service"
