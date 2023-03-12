@@ -4,11 +4,9 @@ on: [push]
 
 env:
   ENV: DEV
+  REGION: europe-west1
   TEAMS_WEBHOOK: ${{ secrets.TEAMS_WEBHOOK }}
   SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-  GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-  REGION: europe-west1
-
 
 jobs:
   gcp-application:
@@ -28,11 +26,12 @@ jobs:
     - name: Checkout
       uses: 'actions/checkout@v3'
 
-    - name: Auth via Credentials json
-      id: 'auth'
-      uses: 'google-github-actions/auth@v1'
+    - name: 'Authenticate to Google Cloud'
+      uses: google-github-actions/setup-gcloud@v0.3.0
       with:
-        credentials_json: '${{ secrets.GCP_SERVICE_KEY }}'
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        service_account_key: ${{ secrets.GCP_SERVICE_KEY }}
+        export_default_credentials: true
 
     - name: Unit Test
       run: echo "Run Unit Tests"
@@ -41,7 +40,7 @@ jobs:
       uses: 'google-github-actions/deploy-cloudrun@v1'
       with:
         service: 'alerting-cloud-run'
-        image: 'eu.gcr.io/${{ env.GCP_PROJECT_ID }}/cnk-alerting:1.0.0'
+        image: 'eu.gcr.io/${{ secrets.GCP_PROJECT_ID }}/cnk-alerting:1.0.0'
         platform: managed
         region: ${{ env.REGION }}
         memory: 512Mi
