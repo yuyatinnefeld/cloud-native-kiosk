@@ -1,5 +1,5 @@
 
-name: 🏗️ Terraform GCP 🏗️
+name: 🏗️Terraform GCP🏗️
 
 on:
   workflow_dispatch:
