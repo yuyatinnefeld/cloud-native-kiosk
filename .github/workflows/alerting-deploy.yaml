@@ -37,8 +37,7 @@ jobs:
     - name: Unit Test
       run: echo "Run Unit Tests"
 
-
-    - name: Deploy Application test
+    - name: Deploy Application
       run: |-
         gcloud run deploy ${{ env.SERVICE_NAME }} \
           --region ${{ env.REGION }} \
@@ -50,7 +49,7 @@ jobs:
           --max-instances 2 \
           --allow-unauthenticated \
           --update-env-vars ENV=${{ env.ENV }},GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }} \
-          --update-secrets -secrets=webhook_url_teams_error=webhook_url_teams_error:latest,webhook_url_slack_error=webhook_url_slack_error:latest \
+          --update-secrets webhook_url_teams_error=webhook_url_teams_error:latest,webhook_url_slack_error=webhook_url_slack_error:latest \
           --quiet
 
 
