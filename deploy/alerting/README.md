@@ -45,8 +45,8 @@ gcloud run deploy ${SERVICE_NAME} \
     --min-instances=1 \
     --max-instances=2 \
     --allow-unauthenticated \
-    --update-env-vars=GCP_PROJECT_ID=${GCP_PROJEC_ID},ENV=DEV \
-    --update-secrets=webhook_url_teams_error=webhook_url_teams_error:latest
+    --update-env-vars=ENV=DEV,GCP_PROJECT_ID=${GCP_PROJECT_ID}\
+    --update-secrets=webhook_url_teams_error=webhook_url_teams_error:latest,webhook_url_slack_error=webhook_url_slack_error:latest
 
 open https://${SERVICE_NAME}-${CLOUD_RUN_ID}-ew.a.run.app/docs
 ```

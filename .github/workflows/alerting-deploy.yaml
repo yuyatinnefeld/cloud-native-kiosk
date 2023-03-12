@@ -1,0 +1,65 @@
+name: 🚀ALERTING SERVICE🚀
+run-name: Publish GCP Alerting Service
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Docker Image Version
+        default: 1.0.0
+        required: true
+
+env:
+  ENV: DEV
+  REGION: europe-west1
+  TEAMS_WEBHOOK: ${{ secrets.TEAMS_WEBHOOK }}
+  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+  SERVICE_NAME: cnk-alerting
+
+jobs:
+  gcp-application:
+    name: 'Provisioning GCP Application'
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        working-directory: ./deploy/alerting
+
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+    - name: Checkout
+      uses: 'actions/checkout@v3'
+
+    - name: 'Authenticate to Google Cloud'
+      uses: google-github-actions/setup-gcloud@v0.3.0
+      with:
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        service_account_key: ${{ secrets.GCP_SERVICE_KEY }}
+        export_default_credentials: true
+
+    - name: Unit Test
+      run: echo "Run Unit Tests"
+
+    - name: Deploy Application
+      run: |-
+        gcloud run deploy ${{ env.SERVICE_NAME }} \
+          --region ${{ env.REGION }} \
+          --image eu.gcr.io/${{ secrets.GCP_PROJECT_ID }}/cnk-alerting:${{ github.event.inputs.version }} \
+          --platform managed \
+          --region ${{ env.REGION }} \
+          --memory 512Mi \
+          --min-instances 1 \
+          --max-instances 2 \
+          --allow-unauthenticated \
+          --update-env-vars ENV=${{ env.ENV }},GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }} \
+          --update-secrets webhook_url_teams_error=webhook_url_teams_error:latest,webhook_url_slack_error=webhook_url_slack_error:latest \
+          --quiet
+
+    - name: Check Response Status
+      run: curl -I https://${{ env.SERVICE_NAME }}-${{ env.CLOUD_RUN_ID }}-ew.a.run.app/docs
+
+    - name: Integration Test
+      run: echo "Call API endpoints with google OAuth"

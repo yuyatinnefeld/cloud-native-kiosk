@@ -6,7 +6,7 @@ import src.schemas as schemas
 from src.utils import get_webhook
 
 
-def teams_notification(message: schemas.Message, project, env, provider) -> bool:
+def teams_notification(message: schemas.Message, env, provider) -> bool:
     webhook_url = get_webhook(env, provider)
     teams_message = pymsteams.connectorcard(webhook_url)
     teams_message.title(message.title)
@@ -23,7 +23,7 @@ def teams_notification(message: schemas.Message, project, env, provider) -> bool
     try:
         teams_message.send()
         status_code = teams_message.last_http_response.status_code
-        print("ms teams status: ", status_code)
+        print("ms teams response status: ", status_code)
         return True
 
     except Exception as exc:
