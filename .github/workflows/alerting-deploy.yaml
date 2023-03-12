@@ -43,7 +43,7 @@ jobs:
     - name: Install Python dependencies
       uses: py-actions/py-dependency-install@v4
       with:
-        path: "requirements.txt"
+        path: "deploy/alerting/requirements.txt"
 
     - name: Unit Test
       run: python -m pytest -rA tests/
