@@ -7,6 +7,7 @@ env:
   REGION: europe-west1
   TEAMS_WEBHOOK: ${{ secrets.TEAMS_WEBHOOK }}
   SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+  SERVICE_NAME: cnk-alerting-app
 
 jobs:
   gcp-application:
@@ -36,18 +37,35 @@ jobs:
     - name: Unit Test
       run: echo "Run Unit Tests"
 
-    - name: Deploy Application
-      uses: 'google-github-actions/deploy-cloudrun@v1'
-      with:
-        service: 'alerting-cloud-run'
-        image: 'eu.gcr.io/${{ secrets.GCP_PROJECT_ID }}/cnk-alerting:1.0.0'
-        platform: managed
-        region: ${{ env.REGION }}
-        memory: 512Mi
-        min-instances: 1
-        max-instances: 2
-        update-env-vars: ENV=${{ env.ENV }},GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}
-        update-secrets: -secrets=webhook_url_teams_error=webhook_url_teams_error:latest,webhook_url_slack_error=webhook_url_slack_error:latest
+
+    - name: Deploy Application test
+      run: |-
+        gcloud run deploy ${{ env.SERVICE_NAME }} \
+          --region ${{ env.REGION }} \
+          --image eu.gcr.io/${{ secrets.GCP_PROJECT_ID }}/cnk-alerting:1.0.0 \
+          --platform "managed" \
+          --region ${{ env.REGION }} \
+          --memory 512Mi \
+          --min-instances 1 \
+          --max-instances 2 \
+          --allow-unauthenticated \
+          --update-env-vars ENV=${{ env.ENV }},GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }} \
+          --update-secrets -secrets=webhook_url_teams_error=webhook_url_teams_error:latest,webhook_url_slack_error=webhook_url_slack_error:latest \
+          --quiet
+
+
+    # # # - name: Deploy Application
+    # # #   uses: 'google-github-actions/deploy-cloudrun@v1'
+    # # #   with:
+    # # #     service: 'alerting-cloud-run'
+    # # #     image: 'eu.gcr.io/${{ secrets.GCP_PROJECT_ID }}/cnk-alerting:1.0.0'
+    # # #     platform: managed
+    # # #     region: ${{ env.REGION }}
+    # # #     memory: 512Mi
+    # # #     min-instances: 1
+    # # #     max-instances: 2
+    # # #     update-env-vars: ENV=${{ env.ENV }},GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}
+    # # #     update-secrets: -secrets=webhook_url_teams_error=webhook_url_teams_error:latest,webhook_url_slack_error=webhook_url_slack_error:latest
 
     - name: Integration Test
       run: echo "Call the GCP Application"
