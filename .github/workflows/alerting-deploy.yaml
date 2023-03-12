@@ -25,7 +25,7 @@ jobs:
       uses: 'google-github-actions/deploy-cloudrun@v1'
       with:
         service: 'alerting-cloud-run'
-        image: 'eu.gcr.io/${GCP_PROJECT_ID}/cnk-alerting:1.0.0
+        image: 'eu.gcr.io/${GCP_PROJECT_ID}/cnk-alerting:1.0.0'
 
     - name: Integration Test
       run: echo "Call the GCP Service"
