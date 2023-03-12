@@ -1,13 +1,19 @@
 name: 🚀ALERTING SERVICE🚀
 run-name: Publish GCP Alerting Service
-on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Docker Image Version
+        default: 1.0.0
+        required: true
 
 env:
   ENV: DEV
   REGION: europe-west1
   TEAMS_WEBHOOK: ${{ secrets.TEAMS_WEBHOOK }}
   SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-  SERVICE_NAME: cnk-alerting-app
+  SERVICE_NAME: cnk-alerting
 
 jobs:
   gcp-application:
@@ -41,8 +47,8 @@ jobs:
       run: |-
         gcloud run deploy ${{ env.SERVICE_NAME }} \
           --region ${{ env.REGION }} \
-          --image eu.gcr.io/${{ secrets.GCP_PROJECT_ID }}/cnk-alerting:1.0.0 \
-          --platform "managed" \
+          --image eu.gcr.io/${{ secrets.GCP_PROJECT_ID }}/cnk-alerting:${{ github.event.inputs.version }} \
+          --platform managed \
           --region ${{ env.REGION }} \
           --memory 512Mi \
           --min-instances 1 \
@@ -52,19 +58,8 @@ jobs:
           --update-secrets webhook_url_teams_error=webhook_url_teams_error:latest,webhook_url_slack_error=webhook_url_slack_error:latest \
           --quiet
 
-
-    # # # - name: Deploy Application
-    # # #   uses: 'google-github-actions/deploy-cloudrun@v1'
-    # # #   with:
-    # # #     service: 'alerting-cloud-run'
-    # # #     image: 'eu.gcr.io/${{ secrets.GCP_PROJECT_ID }}/cnk-alerting:1.0.0'
-    # # #     platform: managed
-    # # #     region: ${{ env.REGION }}
-    # # #     memory: 512Mi
-    # # #     min-instances: 1
-    # # #     max-instances: 2
-    # # #     update-env-vars: ENV=${{ env.ENV }},GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}
-    # # #     update-secrets: -secrets=webhook_url_teams_error=webhook_url_teams_error:latest,webhook_url_slack_error=webhook_url_slack_error:latest
+    - name: Check Response Status
+      run: curl -I https://${{ env.SERVICE_NAME }}-${{ env.CLOUD_RUN_ID }}-ew.a.run.app/docs
 
     - name: Integration Test
-      run: echo "Call the GCP Application"
+      run: echo "Call API endpoints with google OAuth"
