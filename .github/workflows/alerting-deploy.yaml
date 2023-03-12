@@ -43,6 +43,10 @@ jobs:
     - name: Unit Test
       run: echo "Run Unit Tests"
 
+    - name: Push Docker Image
+      run: |-
+        gcloud builds submit --substitutions _IMAGE="eu.gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{ github.event.inputs.version }}"
+
     - name: Deploy Application
       run: |-
         gcloud run deploy ${{ env.SERVICE_NAME }} \
