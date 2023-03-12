@@ -47,6 +47,8 @@ jobs:
 
     - name: Unit Test
       run: python -m pytest -rA tests/
+      env:
+        ENV: CICD
 
     - name: Push Docker Image
       run: |-
