@@ -35,6 +35,12 @@ module "secrets" {
   ]
 }
 
+module "cloud_storage" {
+  source = "./module/storage"
+  region = var.region
+  env    = var.env
+}
+
 # module "gke" {
 #   source   = "./module/gke"
 #   region   = var.region
