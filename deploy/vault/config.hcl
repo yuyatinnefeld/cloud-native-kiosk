@@ -1,5 +1,5 @@
 storage "gcs" {
-  bucket        = "hello-world-test-vault-12345"
+  bucket        = "yuyatinnefeld-dev-vault-secrets"
   ha_enabled    = "true"
 }
 
