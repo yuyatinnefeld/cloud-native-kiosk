@@ -52,7 +52,7 @@ kubectl get pods -n ingress-nginx | grep ingress-nginx-controller
 
 ### Mapping the Local Cluster IP and Domain for Local Access
 ```bash
-vi /etc/hosts
+sudo vi /etc/hosts
 ```
 
 ```bash
@@ -85,8 +85,8 @@ open http://cnk.com
 # Install ArgoCD in your local k8s-cluster
 bash argocd/start_argocd.sh
 
-# Check if pods are available
-kubectl get pods --namespace argocd
+# Check if all pods are available
+kubectl get pods --namespace argocd --watch
 
 # Open argocd ui
 bash argocd/open_argocd.sh
@@ -128,26 +128,6 @@ kubectl delete -f deploy/pods.yaml
 
 minikube delete --all
 ```
-
-
-## IaC via Terraform
-
-### Providers
-- google
-
-### Modules
-- api
-- gke
-- service_account
-
-### Resources
-- google_container_cluster
-- google_container_node_pool
-- google_project_service
-- google_service_account
-
-### Outputs
-- gke_cluster_sa_email
 
 ## Test DB Connection
 

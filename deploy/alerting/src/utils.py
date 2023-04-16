@@ -1,4 +1,15 @@
+import hvac
 import os
+
+
+def access_vault_password(vault_token: str, vault_url: str, secret_path: str):
+    client = hvac.Client(
+        url=vault_url,
+        token=vault_token,
+    )
+    read_response = client.secrets.kv.read_secret_version(path=secret_path)
+    password = read_response["data"]["data"]["password"]
+    return password
 
 
 def get_webhook(env: str = "LOCAL", provider: str = None):
