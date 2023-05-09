@@ -1,11 +1,10 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 
 from app.routes.info import routes as info_routes
-
-# from app.routes.items import routes as items_routes
-# from app.routes.users import routes as users_routes
 
 
 app = FastAPI(
@@ -50,6 +49,11 @@ def health_check():
 
 app.include_router(info_routes.router)
 
-# sqlite db with k8s not working
-# app.include_router(items_routes.router)
-# app.include_router(users_routes.router)
+DB_TYPE = os.getenv("DB_TYPE")
+
+if DB_TYPE == "LOCAL_POSTGRES":
+    from app.routes.items import routes as items_routes
+    from app.routes.users import routes as users_routes
+
+    app.include_router(items_routes.router)
+    app.include_router(users_routes.router)

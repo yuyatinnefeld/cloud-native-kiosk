@@ -24,6 +24,9 @@
             "type": "python",
             "request": "launch",
             "module": "uvicorn",
+            "env": {
+                "DB_TYPE": "LOCAL_POSTGRES",
+            },
             "cwd": "${workspaceFolder}/deploy/backend",
             "args": [
                 "app.main:app"
