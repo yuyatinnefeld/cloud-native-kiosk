@@ -1,5 +1,7 @@
 # Cloud Native Kiosk App on GCP / AWS
 
+![Screenshot](/img/cnk-architecture.png)
+
 ## Overview
 This GitHub project focuses on learning cloud native technologies and frameworks. The objective is to gain hands-on experience with the latest tools and techniques for building scalable and resilient cloud-based applications. Topics covered include Docker, Kubernetes, GCP, AWS, Terraform, and best practices for security, testing, and CI/CD. The project provides interactive, hands-on learning through practical exercises and real-world scenarios. Whether you're a beginner or experienced developer, this project offers the knowledge and skills needed to become proficient in cloud computing.
 
@@ -78,7 +80,6 @@ open http://cnk.com
 ```
 
 ### 2.2. Local Debugging with ArgoCD
-![Screenshot](/img/cnk-architecture.png)
 
 
 ```bash
