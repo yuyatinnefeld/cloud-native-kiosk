@@ -78,7 +78,7 @@ open http://cnk.com
 ```
 
 ### 2.2. Local Debugging with ArgoCD
-![Screenshot](/img/argocd_concept.png)
+![Screenshot](/img/cnk-architecture.png)
 
 
 ```bash
