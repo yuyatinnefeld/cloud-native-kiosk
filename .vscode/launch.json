@@ -7,7 +7,7 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "deploy/frontend/app/main.py",
+                "FLASK_APP": "deploy/frontend/python-app/app/main.py",
                 "FLASK_ENV": "development"
             },
             "args": [

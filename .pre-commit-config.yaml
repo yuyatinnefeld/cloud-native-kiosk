@@ -22,7 +22,7 @@ repos:
     hooks:
     -   id: mypy
         name: mypy_1
-        files: deploy/frontend/
+        files: deploy/frontend/python-app
     -   id: mypy
         name: mypy_2
         files: deploy/backend/python-app/

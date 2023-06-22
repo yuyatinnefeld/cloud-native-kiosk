@@ -34,6 +34,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: deploy/frontend/
+          context: deploy/frontend/python-app/
           push: true
           tags: ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.IMAGE_NAME }}:${{ github.event.inputs.version }}
