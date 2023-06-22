@@ -1,6 +1,6 @@
-# cnk backend service
+# cnk python backend service
 
-docker image for the backend service [Docker Hub](https://hub.docker.com/repository/docker/yuyatinnefeld/cloud-native-kiosk-backend/general).
+docker image for the backend service [Docker Hub](https://hub.docker.com/repository/docker/yuyatinnefeld/cloud-native-kiosk-backend/python/general).
 
 
 ## Local Debugging
@@ -11,7 +11,7 @@ docker image for the backend service [Docker Hub](https://hub.docker.com/reposit
 * Open the site. - `open http://127.0.0.1:8000`
 
 
-## Backend Project Layout
+## Python Backend Project Layout
 
     backend/
         app                         # FastAPI Source code
