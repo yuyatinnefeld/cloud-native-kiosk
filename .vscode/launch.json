@@ -27,7 +27,7 @@
             "env": {
                 "DB_TYPE": "LOCAL_POSTGRES",
             },
-            "cwd": "${workspaceFolder}/deploy/backend",
+            "cwd": "${workspaceFolder}/deploy/backend/python-app",
             "args": [
                 "app.main:app"
             ],

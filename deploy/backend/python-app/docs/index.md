@@ -5,7 +5,7 @@ docker image for the backend service [Docker Hub](https://hub.docker.com/reposit
 
 ## Local Debugging
 
-* Navigate into the working directory. - `cd ./deploy/backend`
+* Navigate into the working directory. - `cd ./deploy/backend/python-app`
 * Install Python pacakges. - `pip install -r requirements.txt`
 * Start the FastAPI server. -`uvicorn main:app --reload`
 * Open the site. - `open http://127.0.0.1:8000`
