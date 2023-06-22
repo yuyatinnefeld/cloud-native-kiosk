@@ -32,8 +32,3 @@ jobs:
       run: |
         pipenv run pip install safety
         pipenv run safety check -r requirements.txt
-
-    - name: Run dependency checks
-      working-directory: ./deploy/backend/python-app
-      run: |
-        pipenv check
