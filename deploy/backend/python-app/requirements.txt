@@ -3,5 +3,5 @@ databases==0.7.0
 fastapi==0.97.0
 psycopg2-binary==2.9.6
 pydantic>=1.8.0,<2.0.0
-SQLAlchemy==2.0.0
+SQLAlchemy>=1.4.42
 uvicorn>=0.15.0,<0.16.0
