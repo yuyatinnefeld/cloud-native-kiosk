@@ -12,7 +12,7 @@ repos:
     rev: 6.0.0
     hooks:
     -   id: flake8
-        args: [--config=deploy/backend/setup.cfg]
+        args: [--config=deploy/backend/python-app/setup.cfg]
 -   repo: https://github.com/psf/black
     rev: 23.1.0
     hooks:
@@ -25,8 +25,8 @@ repos:
         files: deploy/frontend/
     -   id: mypy
         name: mypy_2
-        files: deploy/backend/
-        exclude: ^deploy/backend/app/routes/
+        files: deploy/backend/python-app/
+        exclude: ^deploy/backend/python-app/app/routes/
 
 - repo: https://github.com/pre-commit/mirrors-pylint
   rev: v3.0.0a5
