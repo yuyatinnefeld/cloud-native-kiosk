@@ -9,7 +9,7 @@ on:
         required: true
 env:
   DOCKER_HUB_NAMESPACE: yuyatinnefeld
-  IMAGE_NAME: cloud-native-kiosk-frontend
+  IMAGE_NAME: python-flask-simple-app
 
 jobs:
   push_to_registry:

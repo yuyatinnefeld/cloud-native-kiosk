@@ -9,7 +9,7 @@ on:
         required: true
 env:
   DOCKER_HUB_NAMESPACE: yuyatinnefeld
-  IMAGE_NAME: cloud-native-kiosk-backend
+  IMAGE_NAME: python-fastapi-simple-app
 
 jobs:
   push_to_registry:

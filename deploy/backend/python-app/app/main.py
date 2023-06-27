@@ -15,6 +15,7 @@ app = FastAPI(
 )
 
 origins = [
+    "http://test-yuya.com",
     "http://ckn.com",
     "http://localhost:8000",
 ]
@@ -35,7 +36,7 @@ def read_root():
     The key is "service" and the value is "backend application".
     This function is used to test the API documentation.
     """
-    return {"service": "backend application"}
+    return {"service": "python fastapi simple app"}
 
 
 @app.get("/health_backend")
