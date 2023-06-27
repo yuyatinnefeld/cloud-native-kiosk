@@ -1,88 +1,47 @@
 import os
 
-from flask import Flask, render_template, redirect, request, url_for
-import flask_login
-from flask_login import LoginManager, UserMixin
+from flask import Flask
+from prometheus_flask_exporter import PrometheusMetrics
 
-login_manager = LoginManager()
 
 app = Flask(__name__)
-app.secret_key = "key"
-
-login_manager.init_app(app)
-
-users = {
-    "user": {"pw": "pwd"},
-}
+metrics = PrometheusMetrics(app, path='/metrics')
+APP_NAME = os.getenv("APP_NAME")
 
 
-class User(UserMixin):
-    pass
-
-
-@login_manager.user_loader
-def user_loader(username):
-    if username not in users:
-        return
-    else:
-        user = User()
-        user.id = username
-        return user
-
-
-@login_manager.request_loader
-def request_loader(request):
-    username = request.form.get("username")
-    if username not in users:
-        return
-    else:
-        user = User()
-        user.id = username
-        user.is_authenticated = request.form["pw"] == users[username]["pw"]
-        return user
-
-
-@app.route("/", methods=["GET", "POST"])
+@app.get("/")
 def index():
-    if request.method == "POST":
-        username = request.form.get("username")
-        if request.form.get("pw") == users[username]["pw"]:
-            user = User()
-
-        user.id = username
-        flask_login.login_user(user)
-        return redirect(url_for("protect"))
+    if APP_NAME:
+        return f"welcome to {APP_NAME} app 🎉"
     else:
-        return render_template("index.html")
+        return "welcome to simple flask app!"
 
 
-@app.route("/logout")
-def logout():
-    flask_login.logout_user()
-    return "Logged out"
+@app.get("/home")
+def get_home_page():
+    return "home page"
 
 
-@app.route("/home")
-@flask_login.login_required
-def protect():
-    return render_template("home.html")
-
-
-@app.route("/account")
-@flask_login.login_required
+@app.get("/account")
 def account():
-    return render_template("account.html")
+    return "account page"
 
 
-@app.route("/unittests")
+@app.post("/payment")
+def payment():
+    print("update ...")
+    return "payment page"
+
+
+@app.get("/unittests")
 def unittests():
-    return "This is for Unittests"
+    return "unit test page"
 
 
-@app.route("/health_frontend")
+@app.get("/health_frontend")
 def cluster_health_check():
-    return "Health check frontend👌"
+    return "health check page👌"
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    app.run(debug=False)
