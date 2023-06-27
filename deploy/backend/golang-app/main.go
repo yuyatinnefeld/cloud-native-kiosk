@@ -14,26 +14,26 @@ func main() {
     log.Fatal(http.ListenAndServe(":9999", nil))
 }
 
-func getMessageFromENV() string {
-	message, exists := os.LookupEnv("MESSAGE")
+func getAppNameFromENV() string {
+	app_name, exists := os.LookupEnv("APP_NAME")
 	if exists {
-		return message
+		return app_name
 	}
-	return "No Message defined. You can set environment variable 'MESSAGE'"
+	return "DEMO APP"
 }
 
 
 func hello(w http.ResponseWriter, r *http.Request) {
     w.WriteHeader(http.StatusOK)
 
-	your_message := getMessageFromENV()
+	app_name := getAppNameFromENV()
 
 	response := struct {
-		AppType string `json:"app_type"`
+		AppName string `json:"app_name"`
 		Message string `json:"message"`
 	}{
-		AppType:  "golang-backend",
-		Message: your_message,
+		AppName:  app_name,
+		Message: "message 123!",
 	}
 
 	w.Header().Set("Content-Type", "application/json")

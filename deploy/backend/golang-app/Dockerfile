@@ -9,5 +9,5 @@ FROM alpine:3.15
 WORKDIR /go-app
 COPY --from=GO_BUILD /go-app/server /go-app/server
 EXPOSE 9999
-ENV MESSAGE="${MESSAGE}"
+ENV APP_NAME="${APP_NAME}"
 CMD ["./server"]
