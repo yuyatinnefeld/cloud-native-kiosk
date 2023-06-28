@@ -7,4 +7,5 @@ COPY ./requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 EXPOSE 5000
 ENV PORT=5000
+ENV APP_NAME="${APP_NAME}"
 CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 app.main:app
