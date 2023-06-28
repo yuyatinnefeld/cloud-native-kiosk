@@ -36,19 +36,19 @@ The author decided to continue this project for the following reasons:
 cat .vscode/launch.json
 ```
 
-## 2. Local Debugging (Cluster)
+## 2. Local Testing (Cluster)
 
-### Running a Local Cluster (minikube)
+### Running a k8s Cluster
 ```bash
-# Deploy a local k8s cluster
+# deploy a local k8s cluster
 minikube start --cpus 2 --memory 8192
 minikube profile list
 minikube ip
 
-# Enable minikube ingress controller to use ./deploy/ingress.yaml
+# enable minikube ingress controller to use ./deploy/ingress.yaml
 minikube addons enable ingress
 
-# Verify the ingress controller
+# verify the ingress controller
 kubectl get pods -n ingress-nginx | grep ingress-nginx-controller
 ```
 
@@ -64,49 +64,16 @@ sudo vi /etc/hosts
 ...
 # End of section
 ```
+### 2.1. Testing Manually Deployment
 
-### 2.1. Debugging Manually
 ```bash
-# Deploy components
-kubectl apply -f deploy/k8s/pods.yaml
-kubectl apply -f deploy/k8s/service.yaml
-kubectl apply -f deploy/k8s/ingress.yaml
-
-# Verify the ingress received the cluster IP
-kubectl get ingress --watch
-
-# Open the URL
-open http://cnk.com
+./deploy/k8s/README.md
 ```
 
-### 2.2. Local Debugging with ArgoCD
-
+### 2.2. Testing with ArgoCD
 
 ```bash
-# Install ArgoCD in your local k8s-cluster
-bash argocd/start_argocd.sh
-
-# Check if all pods are available
-kubectl get pods --namespace argocd --watch
-
-# Open argocd ui
-bash argocd/open_argocd.sh
-open http://localhost:8080
-
-# Start to sync argocd+github > deploy application clusters
-kubectl apply -f ./argocd/argocd.yaml
-
-# Test with test-local-domain
-open http://cnk.com
-
-# Test with forward service
-NAME_SPACE="cnk-ns"
-PORT=5000
-SERVICE_NAME="cnk-service"
-kubectl get service -n $NAME_SPACE
-kubectl port-forward service/$SERVICE_NAME $PORT -n $NAME_SPACE
-
-open http://localhost:5000
+./argocd/REAdME.md
 ```
 
 ## 3. Monitoring

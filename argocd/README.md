@@ -4,19 +4,23 @@
 ## Setup
 
 ```bash
-# deploy ArgoCD
-bash start_argocd.sh
+# Install ArgoCD in your local k8s-cluster
+bash argocd/start_argocd.sh
 
-# access ArgoCD UI
-bash open_argocd.sh
+# Check if all pods are available
+kubectl get pods --namespace argocd --watch
 
+# Open argocd UI
+bash argocd/open_argocd.sh
 open http://localhost:8080
+
+# Start to sync argocd+github > deploy application clusters
+kubectl apply -f ./argocd/argocd.yaml
+
+# Test with test-local-domain
+open http://cnk.com
 ```
 
-### track your git repo
-```bash
-kubectl apply -f argocd.yaml
-```
 
 ## Info
 - https://argo-cd.readthedocs.io/en/stable/getting_started/
