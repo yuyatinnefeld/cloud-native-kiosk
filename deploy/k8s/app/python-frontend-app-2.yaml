@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-fe-app-deployment-2
+  labels:
+    app: python-fe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-fe
+  template:
+    metadata:
+      labels:
+        app: python-fe
+    spec:
+      containers:
+        - name: python-app
+          image: yuyatinnefeld/python-flask-simple-app:1.0.0
+          env:
+            - name: APP_NAME
+              value: "CKN FRONTEND 2"
+            - name: FLASK_ENV
+              value: "production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-fe-2-service
+spec:
+  selector:
+    app: python-fe
+  ports:
+    - port: 5001
+      targetPort: 5000
+      name: http-backend
+  type: LoadBalancer

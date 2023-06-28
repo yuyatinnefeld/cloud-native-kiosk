@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-be-app-deployment
+  labels:
+    app: python-be
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-be
+  template:
+    metadata:
+      labels:
+        app: python-be
+    spec:
+      containers:
+        - name: python-app
+          image: yuyatinnefeld/python-fastapi-simple-app:1.0.0
+          env:
+            - name: APP_NAME
+              value: "CKN BACKEND"
+            - name: FLASK_ENV
+              value: "production"
+          readinessProbe:
+            httpGet:
+              path: /health_backend
+              port: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-be-1-service
+spec:
+  selector:
+    app: python-be
+  ports:
+    - port: 8000
+      targetPort: 80
+      name: http-backend
+  type: LoadBalancer
