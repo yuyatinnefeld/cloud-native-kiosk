@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: http-banana-app-deployment
+  labels:
+    app: http-echo-fe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app:  http-echo-fe
+  template:
+    metadata:
+      labels:
+        app:  http-echo-fe
+    spec:
+      containers:
+        - name: http-banana-app
+          image: hashicorp/http-echo
+          args:
+            - "-text=http-banana"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: http-banana-service
+spec:
+  selector:
+    app:  http-echo-fe
+  ports:
+    - port: 5678
+      targetPort: 5678
+      name: http-frontend
+  type: LoadBalancer
