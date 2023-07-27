@@ -15,3 +15,7 @@ updates:
       interval: "weekly"
     reviewers:
       - "yuyatinnefeld"
+    groups:
+       dev-dependencies:
+          patterns:
+            - "*"
