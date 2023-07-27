@@ -9,6 +9,12 @@ updates:
     directory: "/deploy/backend/python-app"
     schedule:
       interval: "weekly"
+    reviewers:
+      - "yuyatinnefeld"
+    groups:
+       dev-backend-dependencies:
+          patterns:
+            - "*"
   - package-ecosystem: "pip"
     directory: "/deploy/frontend/python-app"
     schedule:
@@ -16,6 +22,6 @@ updates:
     reviewers:
       - "yuyatinnefeld"
     groups:
-       dev-dependencies:
+       dev-frontend-dependencies:
           patterns:
-            - "*"
+            - "*" 
