@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-asyncpg = " ==0.27.0"
+asyncpg = "==0.28.0"
 databases = "==0.7.0"
 fastapi = "==0.97.0"
 psycopg2-binary = "==2.9.6"
