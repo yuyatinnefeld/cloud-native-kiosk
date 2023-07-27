@@ -31,3 +31,4 @@ plugins:
             - sys.path.append("app/db");sys.path.append("app/routes");sys.path.append("app/modules")
           rendering:
             show_root_heading: false
+          paths: [app]
