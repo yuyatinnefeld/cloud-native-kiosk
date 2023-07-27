@@ -8,7 +8,7 @@ asyncpg = " ==0.27.0"
 databases = "==0.7.0"
 fastapi = "==0.97.0"
 psycopg2-binary = "==2.9.6"
-pydantic = "==1.10.9"
+pydantic = "==1.10.12"
 SQLAlchemy = ">=1.4.48"
 uvicorn = "==0.22.0"
 
