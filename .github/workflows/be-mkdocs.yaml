@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install requirements
-        run: pip install -r dev-requirements.txt -e .
+        run: pip install -r requirements_dev.txt -e .
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
