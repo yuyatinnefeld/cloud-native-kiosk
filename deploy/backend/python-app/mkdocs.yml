@@ -22,9 +22,11 @@ plugins:
       handlers:
         python:
           paths: [app]
+          paths: [app]
           rendering:
             show_root_heading: true
             show_signature_annotations: true
             show_source: false
           rendering:
             show_root_heading: false
+
