@@ -15,19 +15,16 @@ markdown_extensions:
 strict: false
 
 plugins:
-  - search
   - gen-files:
       scripts:
         - docs/gen_mkdocs_pages.py
   - mkdocstrings:
       handlers:
         python:
+          paths: [app]
           rendering:
             show_root_heading: true
             show_signature_annotations: true
             show_source: false
-          setup_commands:
-            - import sys
-            - sys.path.append("app/db");sys.path.append("app/routes");sys.path.append("app/modules")
           rendering:
             show_root_heading: false
