@@ -9,8 +9,8 @@ This GitHub project focuses on learning cloud native technologies and frameworks
 The cloud native kiosk is a monorepo project built using the Python frameworks Flask (for the frontend) and FastAPI (for the backend). You can view a live demo of the project on GCP at http://xxx.com. The app has a login system, where guests can browse, search, and add products to the cart, but only registered users can checkout and make payments.
 
 ## Project Source Code Documentation
-https://yuyatinnefeld.github.io/cloud-native-kiosk
 
+### [CNK Python Backend Application](https://yuyatinnefeld.com/cloud-native-kiosk/docs/app/routes/users/crud)
 
 ## Motivation
 The author decided to continue this project for the following reasons:
@@ -30,6 +30,8 @@ The author decided to continue this project for the following reasons:
 - Continuous Integration Tool: GitHub Actions
 - Continuous Delivery Tool: ArgoCD
 - Hosting: Google Cloud (with a hybrid cloud setup using GCP, RPi, and AWS)
+
+
 
 ## 1. Local Debugging (Application)
 ```bash
