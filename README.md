@@ -8,6 +8,16 @@ This GitHub project focuses on learning cloud native technologies and frameworks
 ## Cloud Native Kiosk (cnk)
 The cloud native kiosk is a monorepo project built using the Python frameworks Flask (for the frontend) and FastAPI (for the backend). You can view a live demo of the project on GCP at http://xxx.com. The app has a login system, where guests can browse, search, and add products to the cart, but only registered users can checkout and make payments.
 
+## Architecture
+
+#### Container Diagram
+![Screenshot](/img/container-diagram.png)
+
+
+#### Component Diagram
+![Screenshot](/img/component-diagram.png)
+
+
 ## Project Source Code Documentation
 
 ### [CNK Python Backend Application](https://yuyatinnefeld.com/cloud-native-kiosk/docs/app/routes/users/crud)
