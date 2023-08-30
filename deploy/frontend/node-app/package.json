@@ -1,18 +1,18 @@
 {
-  "name": "cnk-simple-project",
+  "name": "simple-node-project",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "author": "",
-  "license": "ISC",
+  "author": "yuya",
   "dependencies": {
     "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "pm2": "^5.3.0"
   },
   "scripts": {
-    "start:dev": "NODE_ENV=dev APP_NAME=local_test_app node app.js",
+    "start:dev": "NODE_ENV=local APP_NAME=local_test_app node app.js",
     "start:prod": "NODE_ENV=prod APP_NAME=local_test_app node app.js",
-    "start:pm2:dev": "NODE_ENV=dev APP_NAME=pm2_test_app pm2 start app.js --update-env",
+    "start:pm2:dev": "NODE_ENV=local APP_NAME=pm2_test_app pm2 start app.js --update-env",
     "start:pm2:prod": "NODE_ENV=prod APP_NAME=pm2_test_app pm2 start app.js --update-env",
     "stop:pm2": "pm2 stop app.js",
     "test": "echo \"Error: no test specified\" && exit 1"

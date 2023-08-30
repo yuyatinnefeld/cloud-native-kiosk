@@ -1,0 +1,38 @@
+version: '2'
+services:
+  web:
+    container_name: node-app
+    restart: always
+    build:
+      context: .
+    volumes:
+      - .:/src
+    environment:
+      NODE_ENV: development
+      DEBUG: nodejs-docker-express:*
+      DB: mongodb
+    ports:
+      - 8080:8080
+    links:
+      - mongodb
+    command: npm run start:dev
+  
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    ports:
+      - 27017:27017
+
+  mongo-express:
+    container_name: express
+    image: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+    restart: unless-stopped # Workaround: to run mongo express with docker-compose
+    ports:
+      - 8081:8081
