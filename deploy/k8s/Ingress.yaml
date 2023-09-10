@@ -13,13 +13,13 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: cnk-service
+            name: python-fe-1-service
             port:
               name: http-frontend
       - path: /api
         pathType: Prefix
         backend:
           service:
-            name: cnk-service
+            name: python-be-1-service
             port:
               name: http-backend
