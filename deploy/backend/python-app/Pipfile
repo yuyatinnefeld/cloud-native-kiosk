@@ -6,9 +6,9 @@ name = "pypi"
 [packages]
 asyncpg = "==0.28.0"
 databases = "==0.8.0"
-fastapi = "==0.103.1"
-psycopg2-binary = "==2.9.7"
-pydantic = "==2.4.0"
+fastapi = "==0.104.0"
+psycopg2-binary = "==2.9.9"
+pydantic = "==2.4.2"
 SQLAlchemy = ">=1.4.48"
 uvicorn = "==0.23.2"
 
