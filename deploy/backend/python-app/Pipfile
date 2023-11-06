@@ -10,7 +10,7 @@ fastapi = "==0.103.1"
 psycopg2-binary = "==2.9.7"
 pydantic = "==2.4.0"
 SQLAlchemy = ">=1.4.48"
-uvicorn = "==0.23.2"
+uvicorn = "==0.24.0.post1"
 
 [scripts]
 # requirements.txt identifies the package to install w/o deps, e.g. tensorflow
