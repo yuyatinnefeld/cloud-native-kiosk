@@ -64,18 +64,11 @@ minikube addons enable ingress
 kubectl get pods -n ingress-nginx | grep ingress-nginx-controller
 ```
 
-### Mapping the Local Cluster IP and Domain for Local Access
+### Update Local DNS for Local Domain Access
 ```bash
-sudo vi /etc/hosts
+echo -e "$(minikube ip)\tbookinfo.app" | sudo tee -a /etc/hosts
 ```
 
-```bash
-# Host Database
-...
-192.168.64.40 cnk.com
-...
-# End of section
-```
 ### 2.1. Testing Manually Deployment
 
 ```bash

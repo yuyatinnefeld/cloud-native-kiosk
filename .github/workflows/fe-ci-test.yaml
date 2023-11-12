@@ -27,7 +27,7 @@ jobs:
 
     - name: Run PyTest tests
       run: |
-        pipenv run pip install Flask==2.2.2 Flask-Login==0.6.2 pytest==7.2.1
+        pipenv run pip install Flask==3.0.0 Werkzeug==3.0.1 Flask-Login==0.6.2 pytest==7.2.1
         pipenv run python -m pytest tests
 
     - name: Run Flake8 linting
