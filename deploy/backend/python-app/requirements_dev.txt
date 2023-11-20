@@ -1,14 +1,14 @@
 # packages for mkdocs
 jinja2==3.1.2
-Markdown==3.4.4
+Markdown==3.5.1
 mkdocs==1.5.3
 mkdocs-autorefs==0.5.0
 mkdocs-gen-files==0.5.0
-mkdocs-material==9.4.2
-mkdocs-material-extensions==1.2 
-mkdocstrings==0.23.0
-mkdocstrings-python==1.7.0
-mkdocstrings-crystal==0.3.6
+mkdocs-material==9.4.10
+mkdocs-material-extensions==1.3 
+mkdocstrings==0.24.0
+mkdocstrings-python==1.7.4
+mkdocstrings-crystal==0.3.7
 mkdocs-gen-files==0.5.0
 mkdocs-literate-nav==0.6.1
 mkdocs-section-index==0.3.8
