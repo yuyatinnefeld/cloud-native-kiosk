@@ -66,7 +66,7 @@ kubectl get pods -n ingress-nginx | grep ingress-nginx-controller
 
 ### Update Local DNS for Local Domain Access
 ```bash
-echo -e "$(minikube ip)\tbookinfo.app" | sudo tee -a /etc/hosts
+echo -e "$(minikube ip)\cnk.com" | sudo tee -a /etc/hosts
 ```
 
 ### 2.1. Testing Manually Deployment
