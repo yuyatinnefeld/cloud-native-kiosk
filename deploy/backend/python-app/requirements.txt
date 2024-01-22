@@ -1,7 +1,7 @@
 asyncpg==0.28.0
 databases==0.8.0
 fastapi==0.103.1
-prometheus-client==0.17.1
+prometheus-client==0.19.0
 prometheus-fastapi-instrumentator==6.1.0
 psycopg2-binary==2.9.7
 pydantic>=1.8.0,<2.0.0
