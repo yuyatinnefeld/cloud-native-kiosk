@@ -4,13 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-asyncpg = "==0.28.0"
+asyncpg = "==0.29.0"
 databases = "==0.8.0"
-fastapi = "==0.103.1"
-psycopg2-binary = "==2.9.7"
-pydantic = "==2.4.0"
+fastapi = "==0.109.0"
+psycopg2-binary = "==2.9.9"
+pydantic = "==2.6.0"
 SQLAlchemy = ">=1.4.48"
-uvicorn = "==0.23.2"
+uvicorn = "==0.27.0.post1"
 
 [scripts]
 # requirements.txt identifies the package to install w/o deps, e.g. tensorflow
